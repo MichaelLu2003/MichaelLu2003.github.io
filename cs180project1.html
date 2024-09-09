@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Michael Lu - CS180 Project 1</h1>
-    <h2>Overview</h2>
+    <h1>Maochuan Lu - CS180 Project 1</h1>
+    <h2>What I do?/h2>
     <p>
         In this project, we aligned RGB plates in order to combine them and produce color images with as few artifacts as possible.
         To do this, we use a multiscale pyramid approach. We recurse the scale of our image down until we reach a target threshold of image size, at which point we iterate over a defined range of possible x and y offsets and calculate an accuracy score on each one at this level. This score is calculated as the L2 norm of an inner region of the picture to reduce effects of borders from offsets. We take our best score as our chosen offset at this level, and return back to the next recursion level that uses that offset as the current image and repeats this process but at a more coarse granularity. In this way, we can approximate a good alignment without having to check every possible offset at the highest resolution of our image.
