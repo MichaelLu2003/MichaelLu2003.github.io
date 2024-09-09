@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS180 Project 1</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Michael Lu - CS180 Project 1</h1>
+    <h2>Overview</h2>
+    <p>
+        In this project, we aligned RGB plates in order to combine them and produce color images with as few artifacts as possible.
+        To do this, we use a multiscale pyramid approach. We recurse the scale of our image down until we reach a target threshold of image size, at which point we iterate over a defined range of possible x and y offsets and calculate an accuracy score on each one at this level. This score is calculated as the L2 norm of an inner region of the picture to reduce effects of borders from offsets. We take our best score as our chosen offset at this level, and return back to the next recursion level that uses that offset as the current image and repeats this process but at a more coarse granularity. In this way, we can approximate a good alignment without having to check every possible offset at the highest resolution of our image.
+    </p>
+    <h2>Results</h2>
+    <h3>Provided Data</h3>
+    <img src="./images/cathedral.jpg" width="500"> <br/>
+    cathedral.jpg <br/>
+    Green Offset Vector = (2, 5) <br/>
+    Red Offset Vector = (3, 12) <br/>
+    <br/>
+    <img src="./images/church.jpg" width="500"> <br/>
+    church.tif <br/>
+    Green Offset Vector = (4, 25) <br/>
+    Red Offset Vector = (-4, 59) <br/>
+    <br/>
+    <img src="./images/emir.jpg" width="500"> <br/>
+    emir.tif <br/>
+    Green Offset Vector = (23, 49) <br/>
+    Red Offset Vector = (44, 65) <br/>
+    <br/>
+    <img src="./images/harvesters.jpg" width="500"> <br/>
+    harvesters.tif <br/>
+    Green Offset Vector = (17, 59) <br/>
+    Red Offset Vector = (13, 123) <br/>
+    <br/>
+    <img src="./images/icon.jpg" width="500"> <br/>
+    icon.tif <br/>
+    Green Offset Vector = (17, 41) <br/>
+    Red Offset Vector = (23, 89) <br/>
+    <br/>
+    <img src="./images/lady.jpg" width="500"> <br/>
+    lady.tif <br/>
+    Green Offset Vector = (9, 55) <br/>
+    Red Offset Vector = (12, 117) <br/>
+    <br/>
+    <img src="./images/melons.jpg" width="500"> <br/>
+    melons.tif <br/>
+    Green Offset Vector = (11, 81) <br/>
+    Red Offset Vector = (13, 177) <br/>
+    <br/>
+    <img src="./images/monastery.jpg" width="500"> <br/>
+    monastery.jpg <br/>
+    Green Offset Vector = (2, -3) <br/>
+    Red Offset Vector = (2, 3) <br/>
+    <br/>
+    <img src="./images/onion_church.jpg" width="500"> <br/>
+    onion_church.tif <br/>
+    Green Offset Vector = (27, 51) <br/>
+    Red Offset Vector = (36, 108) <br/>
+    <br/>
+    <img src="./images/sculpture.jpg" width="500"> <br/>
+    sculpture.tif <br/>
+    Green Offset Vector = (-11, 33) <br/>
+    Red Offset Vector = (-27, 140) <br/>
+    <br/>
+    <img src="./images/self_portrait.jpg" width="500"> <br/>
+    self_portrait.tif <br/>
+    Green Offset Vector = (29, 79) <br/>
+    Red Offset Vector = (37, 176) <br/>
+    <br/>
+    <img src="./images/three_generations.jpg" width="500"> <br/>
+    three_generations.tif <br/>
+    Green Offset Vector = (13, 52) <br/>
+    Red Offset Vector = (12, 111) <br/>
+    <br/>
+    <img src="./images/tobolsk.jpg" width="500"> <br/>
+    tobolsk.jpg <br/>
+    Green Offset Vector = (3, 3) <br/>
+    Red Offset Vector = (3, 7) <br/>
+    <br/>
+    <img src="./images/train.jpg" width="500"> <br/>
+    train.tif <br/>
+    Green Offset Vector = (7, 43) <br/>
+    Red Offset Vector = (33, 87) <br/>
+
+    <h3>Found Data</h3>
+    <img src="./images/cheremukha.jpg" width="500"> <br/>
+    cheremukha.tif <br/>
+    Green Offset Vector = (-93, -29) <br/>
+    Red Offset Vector = (-83, 23) <br/>
+    <br/>
+    <img src="./images/siren.jpg" width="500"> <br/>
+    siren.tif <br/>
+    Green Offset Vector = (-5, 49) <br/>
+    Red Offset Vector = (-25, 97) <br/>
+    
+    <br>
+    <a href="cs180.html">Back to CS180 Projects</a>
+</body>
+</html>
 
