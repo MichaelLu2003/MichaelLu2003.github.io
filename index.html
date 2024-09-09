@@ -2,73 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CS180 Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-            color: #333;
-        }
-        header {
-            background-color: #0073e6;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            border-radius: 8px;
-        }
-        main {
-            margin: 20px 0;
-        }
-        .project-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .project-item {
-            margin: 10px 0;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .project-item a {
-            text-decoration: none;
-            color: #0073e6;
-            font-weight: bold;
-        }
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <title>Maochuan Lu</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My CS180 Portfolio!</h1>
-    </header>
-    <main>
-        <ul class="project-list">
-            <li class="project-item">
-                <a href="./1/index.html">Project 1: [Project Title]</a>
-                <p>[Brief description of Project 1]</p>
-            </li>
-            <li class="project-item">
-                <a href="./2/index.html">Project 2: [Project Title]</a>
-                <p>[Brief description of Project 2]</p>
-            </li>
-            <li class="project-item">
-                <a href="./3/index.html">Project 3: [Project Title]</a>
-                <p>[Brief description of Project 3]</p>
-            </li>
-            <!-- Add more projects as needed -->
-        </ul>
-    </main>
-    <footer>
-        &copy; 2024 Maochuan Lu. All rights reserved.
-    </footer>
+        <h1>Maochuan Lu</h1>
+        <div class="section-wrapper" id="education">
+            <h2>Education</h2>
+            <h3>University of California, Berkeley</h3>
+            <p>Berkeley, California</p>
+            <p><strong>Bachelor of Art in Mathematics and Computer Science</strong></p>
+            <p>Aug, 2021 - May, 2025</p>
+            <p><em>Minor:</em> Data Science</p>
+            <p><b>Skills:</b> Machine Learning, NLP, LLMs</p>
+        </div>
+        <div class="section-wrapper" id="experience">
+            <h2>Research Experience</h2>
+            <div class="experience-wrapper">
+                <div class="experience-list-item">
+                    <h3>Research Assistant - Berkeley Artificial Intelligence Research Lab</h3>
+                    <p>Berkeley, CA, U.S | Feb, 2024 - Current</p>
+                    <ul>
+                        <li>Projects: Model-Editing.</li>
+                        <li>Task 1: Prove the hypothesis MEMIT is gradient descent, and try to improve model-editing technique based on this</li>
+                        <li>Task 2: Fast MEMIT <li>
+                        <li>Task 3: Building the internal knowledge graph of LLMs as a new metric to measure the perfomance of model-editing</li>
+                        <li>Task 4: Evaluate perfomance of modified EMMET, MEMIT, ROME </li>
+                    </ul>
+                </div>
+                <div class="experience-list-item">
+                    <h3>Research Assistant - Tsinghua University School of Economics and Management</h3>
+                    <p>Beijing, China | May, 2023 - Aug, 2023</p>
+                    <ul>
+                        <li><strong>Projects:</strong> Worked on LLM's economic rationality.</li>
+                        <li><strong>Communication:</strong> Presented research findings in group meetings, collaborating with a multidisciplinary team to interpret results and communicate.</li>
+                        <li><strong>Tasks and Achievements:</strong> 
+                            <ul>
+                                <li>Utilized experimental economics and revealed preference theory to compare rationality levels between GPT and Ernie LLMs.</li>
+                                <li>Prepared a analysis for PNAS revise-and-resubmit submission, ensuring data accuracy and experiment reliability.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="section-wrapper" id="projects">
+            <h2>Projects of Course</h2>
+            <div class="project-wrapper">
+                <div class="project-list-item">
+                    <button onclick="window.location.href='cs180.html'">CS180 Project</button>
+                </div>
+            </div>
+        </div>
+        <div class="section-wrapper">
+            <p> You can contact me <a href="https://www.instagram.com/michaellu455?igsh=YzVkODRmOTdmMw%3D%3D&utm_source=qr" target="_blank">here</a>!</p>
+        </div>
 </body>
 </html>
 
