@@ -18,6 +18,11 @@
         Secondly, For other levels, we scale down pictures by a factor of 2 creating a pyramid of images at lower resolutions. Then it recursivelycalls calls pyramid_align to images at the next level.
         Here is the punchline, After finding the best alignment at a lower resolution, we scale the current best alignment offsets by a factor of 2, since the previous level was downscaled by factor of 2.
         Then we shifts pic1 based on these scaled offsets and refines the alignment by performing a final alignment at the current level using the align function.
+    5. When finish implemneting above function, our alignment for simple pictures like cathedral.jpg looks great, but for images like emir.tif, it still not good.
+    6. So, after I check the ed, classmate gives the idea that using feature.canny and cropping will be helpful, so I begin to search what is canny and how to use it through google. 
+    7. Then i begin to implement manual_crop function, which simply scale down heigh and width by fixed percent, like 15% to remove borders.
+    8. Finally, using the skeleton code to align channels processed by canny, and get their shifted coordinates, and using these coordinates back to the original image, and shift them to get a full image.
+    9. It works really well for all of images! 
     </p>
     <h2>Results</h2>
     <img src="./proj1_pic/out_pic/out_cathedral.jpg" width="500"> <br/>
