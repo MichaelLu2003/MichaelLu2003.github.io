@@ -11,6 +11,14 @@
     <p style="font-size: 16px;">
     In this project, we use filters and filters (created by our own)  to do lots of fun things! Blending images, Sharpening images, ..... Really interesting! Here is my code documentation and idea:
 </p>
+    <h3>Part1 </h3> bigger size
+    <h4>Part 1.1 </h4>
+    <p style="font-size: 16px;">
+        I first computed the partial derivatives in both x and y directions using convolution with finite difference operators, as the D_x = [1, - 1], D_y = [1, -1].T. Then, I calculate the gradient magnitude from these derivatives and 
+        binarized the result based on a threshold (0.3), and get following pictures.
+    </p>
+    <img src="./proj1_pic/out_pic/out_cathedral.jpg" width="500"> <br/>
+    
 <ol style="font-size: 16px;">
     <li>To align channels, we definitely need to move or shift a channel based on xy-displacement.
     In this case, we create a helper function <code>shift(pic, x, y)</code> using <code>np.roll</code>.</li>
