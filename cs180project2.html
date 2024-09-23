@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS180 Project 2</title>
+</head>
+<body>
+    <h1>Maochuan Lu - CS180 Project 2</h1>
+    <h2>Overview </h2>
+    <p style="font-size: 16px;">
+    In this project, we use filters and filters (created by our own)  to do lots of fun things! Blending images, Sharpening images, ..... Really interesting! Here is my code documentation and idea:
+</p>
+<ol style="font-size: 16px;">
+    <li>To align channels, we definitely need to move or shift a channel based on xy-displacement.
+    In this case, we create a helper function <code>shift(pic, x, y)</code> using <code>np.roll</code>.</li>
+    
+    <li>We also need a metric to evaluate whether this shift can give us better alignment. I chose normalized cross-correlation for this metric, which is more robust to brightness.</li>
+    
+    <li>With <code>ncc</code> and <code>shift</code>, we begin to implement our naive align function, which simply compares each possible shift in a window and returns the best shift with the best <code>ncc</code> score.</li>
+    
+    <li>However, with the naive alignment function, processing large pictures is quite slow. So we implemented a pyramid alignment function using recursion (an iterative one is quite slow). 
+        <ul>
+            <li>Firstly, we get our base case (level == 0) and simply return naive alignment at the final layer.</li>
+            <li>Secondly, for other levels, we scale down pictures by a factor of 2, creating a pyramid of images at lower resolutions. Then it recursively calls <code>pyramid_align</code> on images at the next level.</li>
+            <li>After finding the best alignment at a lower resolution, we scale the current best alignment offsets by a factor of 2, since the previous level was downscaled by a factor of 2.</li>
+            <li>Then we shift <code>pic1</code> based on these scaled offsets and refine the alignment by performing a final alignment at the current level using the <code>align</code> function.</li>
+        </ul>
+    </li>
+    
+    <li>When finishing implementing the above function, our alignment for simple pictures like <code>cathedral.jpg</code> looks great, but for images like <code>emir.tif</code>, it does not align well.</li>
+    
+    <li>After I checked the ed, a classmate suggested that using <code>feature.canny</code> and cropping would be helpful, so I began to research what <code>canny</code> is and how to use it through Google.</li>
+    
+    <li>I then implemented the <code>manual_crop</code> function, which simply scales down the height and width by a fixed percentage (e.g., 15%) to remove borders.</li>
+    
+    <li>Finally, I used the skeleton code to align channels processed by <code>canny</code> and got their shifted coordinates. Then I applied these coordinates back to the original image and shifted them to get a full image.</li>
+    
+    <li>It works really well for all of the images!</li>
+</ol>
 
+    <h2>Results</h2>
+    <img src="./proj1_pic/out_pic/out_cathedral.jpg" width="500"> <br/>
+    cathedral.jpg <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_church.jpg" width="500"> <br/>
+    church.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_emir.jpg" width="500"> <br/>
+    emir.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_harvesters.jpg" width="500"> <br/>
+    harvesters.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_icon.jpg" width="500"> <br/>
+    icon.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_lady.jpg" width="500"> <br/>
+    lady.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_melons.jpg" width="500"> <br/>
+    melons.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_monastery.jpg" width="500"> <br/>
+    monastery.jpg <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_sculpture.jpg" width="500"> <br/>
+    sculpture.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_self_portrait.jpg" width="500"> <br/>
+    self_portrait.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_three_generations.jpg" width="500"> <br/>
+    three_generations.tif <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_tobolsk.jpg" width="500"> <br/>
+    tobolsk.jpg <br/>
+    <br/>
+    <img src="./proj1_pic/out_pic/out_train.jpg" width="500"> <br/>
+    train.tif <br/>
+    <a href="cs180.html">Back to CS180 Projects</a>
+</body>
+</html>
