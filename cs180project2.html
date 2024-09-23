@@ -20,7 +20,7 @@
         First, I computed the partial derivatives in both the x and y directions using convolution with finite difference operators, where D<sub>x</sub> = [1, -1] and D<sub>y</sub> = [1, -1]<sup>T</sup>. 
         Then, I calculated the gradient magnitude from these derivatives and binarized the result based on a threshold of 0.3. Here are the resulting images:
     </p>
-    <img src="./proj2_pic/Part 1.1.png" width="800" alt="Part 1.1.png"> <br/>
+    <img src="./proj2_pic/Part 1.1.png" width="1000" alt="Part 1.1.png"> <br/>
 
     <h4>Part 1.2</h4>
     <p style="font-size: 16px;">
@@ -30,7 +30,7 @@
     <p style="font-size: 16px;">
         One thing I noticed is that the result using this technique has clearer and thicker edges. Additionally, the image has less noise, as small and irrelevant details are filtered out.
     </p>
-    <img src="./proj2_pic/Part 1.2.2.png" width="800" alt="Part 1.2.2.png"> <br/>
+    <img src="./proj2_pic/Part 1.2.2.png" width="1000" alt="Part 1.2.2.png"> <br/>
 
     <p style="font-size: 16px;">
         Next, I computed the derivatives of the Gaussian kernel in both the x and y directions, then convolved the image with these kernels to obtain the Difference of Gaussians (DoG) gradients. Afterward, I calculated the gradient magnitude and binarized it based on a threshold of 0.1. 
@@ -39,7 +39,7 @@
     <p style="font-size: 16px;">
         Compared to the previous image, we can see that the results are essentially the same, as they are computed either in two separate steps or in one combined operation.
     </p>
-    <img src="./proj2_pic/Part 1.2.3.png" width="800"  alt="Part 1.2.3.png"> <br/>
+    <img src="./proj2_pic/Part 1.2.3.png" width="1000"  alt="Part 1.2.3.png"> <br/>
     <a href="cs180.html">Back to CS180 Projects</a>
 </body>
 </html>
