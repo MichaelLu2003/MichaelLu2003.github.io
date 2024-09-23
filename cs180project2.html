@@ -41,5 +41,48 @@
     </p>
     <img src="./proj2_pic/Part 1.2.3.png" width="1000"  alt="Part 1.2.3.png"> <br/>
     <a href="cs180.html">Back to CS180 Projects</a>
+
+    <h3 style="font-size: larger;">Part 2</h3>
+
+    <h4>Part 2.1</h4>
+    <p style="font-size: 16px;">
+        I separate my image into its RGB channels. Then, I applied a 2D Gaussian blur to each channel to obtain the low-frequency components. 
+        By subtracting the blurred image from the original image, I get the high-frequency image. Then I can use these high-frequency image to sharpen the image 
+        by adding them back with alpha. That is say , image + alpha * (image - blur_img).
+        Here are the resulting images of two examples:
+    </p>
+    <img src="./proj2_pic/Part 2.1.png" width="1000" alt="Part 2.1.png"> <br/>
+    <img src="./proj2_pic/Part 2.1.3.png" width="1000" alt="Part 2.1.3.png"> <br/>
+    <p style="font-size: 16px;">
+        Then for evaluation, I pick a sharpen image and blur it and resharpen it. In my view, the resharpe image does not as good as original image. It is not really natrual.
+    </p>
+    <img src="./proj2_pic/Part 2.1.2.png" width="1000" alt="Part 2.1.2.png"> <br/>
+    <h4>Part 2.2</h4>
+    <p style="font-size: 16px;">
+        Now, it is time to blend image! I first aligned my two images, and then applied a Gaussian filter with different sigmas to create low-frequency image of each image. 
+        Then I get high-frequency image by subtracting the blurred image from the original ones. 
+        Next, you generate two hybrid images by combining the low frequencies of one image with the high frequencies of the other. 
+        Here are my results of several pictures.
+    </p>
+    <img src="./proj2_pic/Part 2.2.1.png" width="1000" alt="Part 2.2.1.png"> <br/>
+    <img src="./proj2_pic/Part 2.2.3.png" width="1000" alt="Part 2.2.3.png"> <br/>
+    <img src="./proj2_pic/Part 2.2.4.png" width="1000" alt="Part 2.2.4.png"> <br/>
+    <p style="font-size: 16px;">
+        Although I get the hybrid moon&earth and LBJ&AD, my favourite image is still derek&nutmeg! Let's do fourier analysis.
+        
+    </p>
+    <img src="./proj2_pic/Part 2.2.2.png" width="1000" alt="Part 2.2.2.png"> <br/>
+
+    h4>Part 2.3</h4>
+    <p style="font-size: 16px;">
+        You create a 2D Gaussian filter using a specified size and sigma for smoothing.
+        You construct a Gaussian stack for both images (apple and orange) and the mask by repeatedly applying the Gaussian filter without downsampling, ensuring all levels have the same size.
+        You create Laplacian stacks by subtracting successive Gaussian levels. This captures the high-frequency details at each level of the stack.
+        You generate a mask that splits the image into two halves (one for the apple and one for the orange) to blend the two images together.
+        You blend the apple and orange images at each level of the Laplacian stack using the mask. This results in a combined image at each level, where half of the image is from the apple and the other half is from the orange.
+    </p>
+    <img src="./proj2_pic/Part 2.3.3.png" width="1000" alt="Part 2.3.3.png"> <br/>
+
+    <a href="cs180.html">Back to CS180 Projects</a>
 </body>
 </html>
