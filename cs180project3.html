@@ -16,35 +16,27 @@ and generate a caricature of myself by extrapolating from the population mean. B
 
     <h3 style="font-size: larger;">Part 1</h3>
 
-    <h4>Part 1.1</h4>
+    <h4>Part 1</h4>
     <p style="font-size: 16px;">
-        First, I computed the partial derivatives in both the x and y directions using convolution with finite difference operators, where D<sub>x</sub> = [1, -1] and D<sub>y</sub> = [1, -1]<sup>T</sup>. 
-        Then, I calculated the gradient magnitude from these derivatives and binarized the result based on a threshold of 0.3. Here are the resulting images:
+        First, I first label the corresponding points using the correspondance tool provided by last year's student. 
+        Secondly, I loaded facial keypoints from json file created by that tool, 
+        Thirdly, I computed the midpoint of corresponding keypoints between the two faces. 
+        Then, I use Delaunay triangulation on that midpoint. Also I visualized that triangulation on both images.
+        Here is sthe result:
     </p>
-    <img src="./proj2_pic/Part 1.1.png" width="1000" alt="Part 1.1.png"> <br/>
+    <img src="./proj3_pic/Part1.png" width="1000" alt="Part1.png"> <br/>
 
-    <h4>Part 1.2</h4>
+    <h4>Part 2</h4>
     <p style="font-size: 16px;">
-        I created a 2D Gaussian kernel using a 1D Gaussian, then applied it to the input image via convolution. Afterward, I computed the partial derivatives in the x and y directions on the blurred image. 
-        I then computed the gradient magnitude and binarized the result using a threshold to display the results.
+        I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
+        Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
+        Finally, I did a cross-dissolve to blend two faces to get a midway face. 
+        Here is the result:
     </p>
-    <p style="font-size: 16px;">
-        One thing I noticed is that the result using this technique has clearer and thicker edges. Additionally, the image has less noise, as small and irrelevant details are filtered out.
-    </p>
-    <img src="./proj2_pic/Part 1.2.2.png" width="1000" alt="Part 1.2.2.png"> <br/>
-
-    <p style="font-size: 16px;">
-        Next, I computed the derivatives of the Gaussian kernel in both the x and y directions, then convolved the image with these kernels to obtain the Difference of Gaussians (DoG) gradients. Afterward, I calculated the gradient magnitude and binarized it based on a threshold of 0.1. 
-        Here are the results.
-    </p>
-    <p style="font-size: 16px;">
-        Compared to the previous image, we can see that the results are essentially the same, as they are computed either in two separate steps or in one combined operation.
-    </p>
-    <img src="./proj2_pic/Part 1.2.3.png" width="1000"  alt="Part 1.2.3.png"> <br/>
-    <a href="cs180.html">Back to CS180 Projects</a>
+    <img src="./proj3_pic/Part2.png" width="1000" alt="Part2.png"> <br/>
 
     <h3 style="font-size: larger;">Part 2</h3>
-
+    https://youtube.com/shorts/ZCOOzz04D_g?feature=share
     <h4>Part 2.1</h4>
     <p style="font-size: 16px;">
         I separate my image into its RGB channels. Then, I applied a 2D Gaussian blur to each channel to obtain the low-frequency components. 
