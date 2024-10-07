@@ -14,9 +14,7 @@
 and generate a caricature of myself by extrapolating from the population mean. Besides, I also use those techniques to somehow change the gender of my own face.
     </p>
 
-    <h3 style="font-size: larger;">Part 1</h3>
-
-    <h4>Part 1</h4>
+    <h2 style="font-size: larger;">Part 1</h2>
     <p style="font-size: 20px;">
         First, I first label the corresponding points using the correspondance tool provided by last year's student. 
         Secondly, I loaded facial keypoints from json file created by that tool, 
@@ -26,7 +24,7 @@ and generate a caricature of myself by extrapolating from the population mean. B
     </p>
     <img src="./proj3_pic/Part1.png" width="600" alt="Part1.png"> <br/>
 
-    <h4>Part 2</h4>
+    <h2 style="font-size: larger;">Part 2</h2>
     <p style="font-size: 20px;">
         I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
         Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
@@ -35,7 +33,7 @@ and generate a caricature of myself by extrapolating from the population mean. B
     </p>
     <img src="./proj3_pic/Part2.png" width="800" alt="Part2.png"> <br/>
 
-    <h4>Part 3</h4>
+    <h2 style="font-size: larger;">Part 3</h2>
     <p style="font-size: 20px;">
         In Part 2, I created a GIF morph sequence with 45 frames, each with a duration of 30 ms. Since the GIF file was too large to upload to GitHub, I converted it into a YouTube video. You can watch it directly below:
     </p>
@@ -44,7 +42,7 @@ and generate a caricature of myself by extrapolating from the population mean. B
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe>
 
-    <h4>Part 4</h4>
+    <h2 style="font-size: larger;">Part 4</h2>
     <p style="font-size: 20px;">
         I used the Danes dataset. I first get keypoints from .asf files for male and female images by parsing files.
         Then after i do this, I firgure out that my final image only has face without background and clothes.
