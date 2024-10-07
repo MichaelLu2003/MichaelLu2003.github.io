@@ -17,75 +17,32 @@ and generate a caricature of myself by extrapolating from the population mean. B
     <h3 style="font-size: larger;">Part 1</h3>
 
     <h4>Part 1</h4>
-    <p style="font-size: 16px;">
+    <p style="font-size: 32px;">
         First, I first label the corresponding points using the correspondance tool provided by last year's student. 
         Secondly, I loaded facial keypoints from json file created by that tool, 
         Thirdly, I computed the midpoint of corresponding keypoints between the two faces. 
         Then, I use Delaunay triangulation on that midpoint. Also I visualized that triangulation on both images.
         Here is sthe result:
     </p>
-    <img src="./proj3_pic/Part1.png" width="1000" alt="Part1.png"> <br/>
+    <img src="./proj3_pic/Part1.png" width="500" alt="Part1.png"> <br/>
 
     <h4>Part 2</h4>
-    <p style="font-size: 16px;">
+    <p style="font-size: 32px;">
         I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
         Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
         Finally, I did a cross-dissolve to blend two faces to get a midway face. 
         Here is the result:
     </p>
-    <img src="./proj3_pic/Part2.png" width="1000" alt="Part2.png"> <br/>
+    <img src="./proj3_pic/Part2.png" width="500" alt="Part2.png"> <br/>
 
-    <h3 style="font-size: larger;">Part 2</h3>
-    https://youtube.com/shorts/ZCOOzz04D_g?feature=share
-    <h4>Part 2.1</h4>
-    <p style="font-size: 16px;">
-        I separate my image into its RGB channels. Then, I applied a 2D Gaussian blur to each channel to obtain the low-frequency components. 
-        By subtracting the blurred image from the original image, I get the high-frequency image. Then I can use these high-frequency image to sharpen the image 
-        by adding them back with alpha. That is say , image + alpha * (image - blur_img).
-        Here are the resulting images of two examples:
+    <h4>Part 3</h4>
+    <p style="font-size: 32px;">
+        In Part 2, I created a GIF morph sequence with 45 frames, each with a duration of 30 ms. Since the GIF file was too large to upload to GitHub, I converted it into a YouTube video. You can watch it directly below:
     </p>
-    <img src="./proj2_pic/Part 2.1.png" width="1000" alt="Part 2.1.png"> <br/>
-    <img src="./proj2_pic/Part 2.1.3.png" width="1000" alt="Part 2.1.3.png"> <br/>
-    <p style="font-size: 16px;">
-        Then for evaluation, I pick a sharpen image and blur it and resharpen it. In my view, the resharpe image does not as good as original image. It is not really natrual.
-    </p>
-    <img src="./proj2_pic/Part 2.1.2.png" width="1000" alt="Part 2.1.2.png"> <br/>
-    <h4>Part 2.2</h4>
-    <p style="font-size: 16px;">
-        Now, it is time to blend image! I first aligned my two images, and then applied a Gaussian filter with different sigmas to create low-frequency image of each image. 
-        Then I get high-frequency image by subtracting the blurred image from the original ones. 
-        Next, you generate two hybrid images by combining the low frequencies of one image with the high frequencies of the other. 
-        Here are my results of several pictures.
-    </p>
-    <img src="./proj2_pic/Part2.png" width="1000" alt="Part 2.2.1.png"> <br/>
-    <img src="./proj2_pic/Part 2.2.3.png" width="1000" alt="Part 2.2.3.png"> <br/>
-    <img src="./proj2_pic/Part 2.2.4.png" width="1000" alt="Part 2.2.4.png"> <br/>
-    <p style="font-size: 16px;">
-        Although I get the hybrid moon&earth and LBJ&AD, my favourite image is still derek&nutmeg! Let's do fourier analysis.
-        
-    </p>
-    <img src="./proj2_pic/Part 2.2.2.png" width="1000" alt="Part 2.2.2.png"> <br/>
-
-    <h4>Part 2.3</h4>
-    <p style="font-size: 16px;">
-        I first construct a Gaussian stack for both apple and orange and the mask by repeatedly applying the Gaussian filter. 
-        Then I also create Laplacian stacks by subtracting each Gaussian level in the stack. 
-        I create a helper function create_mask to simply generate a mask that splits the image into two halves.
-        Then, I blend the apple and orange images at each level of the Laplacian stack using the mask. This results in a combined image at each level.
-    </p>
-    <img src="./proj2_pic/Part 2.3.1.png" width="750" alt="Part 2.3.1.png"> <br/>
-    <h4>Part 2.3</h4>
-    <p style="font-size: 16px;">
-        I first construct two examples using vertical stack and horizontal stack except the origiinal orapple, which is following:    
-    </p>
-    <img src="./proj2_pic/Part 2.4.4.png" width="1000" alt="Part 2.4.4.png"> <br/>
-    <img src="./proj2_pic/Part 2.4.1.png" width="1000" alt="Part 2.4.1.png"> <br/>
-    <img src="./proj2_pic/Part 2.4.2.png" width="1000" alt="Part 2.4.2.png"> <br/>
-
-    <p style="font-size: 16px;">
-        Then I do following irregular mask:
-    </p>
-    <img src="./proj2_pic/boy_with_pearl.png" width="1000" alt="Part 2.4.3.png"> <br/>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZCOOzz04D_g" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
 
 
     <a href="cs180.html">Back to CS180 Projects</a>
