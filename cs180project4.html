@@ -3,27 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS180 Project 2</title>
+    <title>CS180 Project 4</title>
 </head>
 <body>
-    <h1>Maochuan Lu - CS180 Project 4</h1>
+    <h1>Maochuan Lu - CS180 Project 4A</h1>
 
     <h2 style="font-size: 30px;">Part A: Overview</h2>
     <p style="font-size: 20px;">
-       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Buidling, and my living room and align them using homographies, 
+       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Buidling, my living room, etc and align them using homographies, 
       then I inverse warp the images using that homography matrix, and blend them into a mosaic.
     </p>
 
-    <h2 style="font-size: 30px;">Part 1</h2>
+    <h2 style="font-size: 30px;">Part A: Overview</h2>
     <p style="font-size: 20px;">
-        First, I first label the corresponding points using the correspondance tool provided by last year's student. 
-        Secondly, I loaded facial keypoints from json file created by that tool, 
-        Thirdly, I computed the midpoint of corresponding keypoints between the two faces. 
-        Then, I use Delaunay triangulation on that midpoint. Also I visualized that triangulation on both images.
-        Here is sthe result:
+       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Building, my living room, and more. Then, I align them using homographies, 
+      inverse warp the images using the homography matrix, and blend them into a mosaic.
     </p>
-    <img src="./proj3_pic/Part1.png" width="600" alt="Part1.png"> <br/>
 
+    <h2 style="font-size: 30px;">Shoot the Pictures</h2>
+    <p style="font-size: 20px;">
+        Here are all the pictures I used for this project:
+    </p>
+    <ul style="font-size: 20px;">
+        <li>This is a picture from NYC Metropolitan Museum of Art:
+        <br><img src="./proj4a_pic/painting.jpg" width="800" alt="NYC Metropolitan Museum painting"></li>
+        
+        <li>This is a poster I shot in Taiwan during the election:
+        <br><img src="./proj4a_pic/poster.jpg" width="800" alt="Election poster in Taiwan"></li>
+        
+        <li>This is a random picture I shot in Main Stack:
+        <br><img src="./proj4a_pic/library.jpg" width="800" alt="Main Stack library"></li>
+        
+        <li>California Hall:
+        <br><img src="./proj4a_pic/calhall1.jpg" width="800" alt="California Hall photo 1">
+        <br><img src="./proj4a_pic/calhall2.jpg" width="800" alt="California Hall photo 2">
+        <br><img src="./proj4a_pic/calhall3.jpg" width="800" alt="California Hall photo 3"></li>
+        
+        <li>Valley Life Science Building:
+        <br><img src="./proj4a_pic/vlsb1.jpg" width="800" alt="Valley Life Science Building photo 1">
+        <br><img src="./proj4a_pic/vlsb2.jpg" width="800" alt="Valley Life Science Building photo 2">
+        <br><img src="./proj4a_pic/vlsb3.jpg" width="800" alt="Valley Life Science Building photo 3"></li>
+        
+        <li>My living room:
+        <br><img src="./proj4a_pic/lv1.jpg" width="800" alt="Living room photo 1">
+        <br><img src="./proj4a_pic/lv2.jpg" width="800" alt="Living room photo 2">
+        <br><img src="./proj4a_pic/lv3.jpg" width="800" alt="Living room photo 3"></li>
+    </ul>
     <h2 style="font-size: 30px;">Part 2</h2>
     <p style="font-size: 20px;">
         I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
