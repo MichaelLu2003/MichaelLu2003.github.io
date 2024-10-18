@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS180 Project 4</title>
+    <style>
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .image-row img {
+            width: 30%; 
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Maochuan Lu - CS180 Project 4A</h1>
 
     <h2 style="font-size: 30px;">Part A: Overview</h2>
     <p style="font-size: 20px;">
-       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Buidling, my living room, etc and align them using homographies, 
-      then I inverse warp the images using that homography matrix, and blend them into a mosaic.
-    </p>
-
-    <h2 style="font-size: 30px;">Part A: Overview</h2>
-    <p style="font-size: 20px;">
-       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Building, my living room, and more. Then, I align them using homographies, 
-      inverse warp the images using the homography matrix, and blend them into a mosaic.
+       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Building, my living room, etc., align them using homographies, 
+       then I inverse warp the images using that homography matrix, and blend them into a mosaic.
     </p>
 
     <h2 style="font-size: 30px;">Shoot the Pictures</h2>
@@ -26,37 +31,101 @@
     </p>
     <ul style="font-size: 20px;">
         <li>This is a picture from NYC Metropolitan Museum of Art:
-        <br><img src="./proj4a_pic/painting.jpg" width="800" alt="NYC Metropolitan Museum painting"></li>
+            <br><img src="./proj4a_pic/painting.jpg" width="800" alt="NYC Metropolitan Museum painting">
+        </li>
         
         <li>This is a poster I shot in Taiwan during the election:
-        <br><img src="./proj4a_pic/poster.jpg" width="800" alt="Election poster in Taiwan"></li>
+            <br><img src="./proj4a_pic/poster.jpg" width="800" alt="Election poster in Taiwan">
+        </li>
         
         <li>This is a random picture I shot in Main Stack:
-        <br><img src="./proj4a_pic/library.jpg" width="800" alt="Main Stack library"></li>
-        
-        <li>California Hall:
-        <br><img src="./proj4a_pic/calhall1.jpg" width="800" alt="California Hall photo 1">
-        <br><img src="./proj4a_pic/calhall2.jpg" width="800" alt="California Hall photo 2">
-        <br><img src="./proj4a_pic/calhall3.jpg" width="800" alt="California Hall photo 3"></li>
-        
-        <li>Valley Life Science Building:
-        <br><img src="./proj4a_pic/vlsb1.jpg" width="800" alt="Valley Life Science Building photo 1">
-        <br><img src="./proj4a_pic/vlsb2.jpg" width="800" alt="Valley Life Science Building photo 2">
-        <br><img src="./proj4a_pic/vlsb3.jpg" width="800" alt="Valley Life Science Building photo 3"></li>
-        
-        <li>My living room:
-        <br><img src="./proj4a_pic/lv1.jpg" width="800" alt="Living room photo 1">
-        <br><img src="./proj4a_pic/lv2.jpg" width="800" alt="Living room photo 2">
-        <br><img src="./proj4a_pic/lv3.jpg" width="800" alt="Living room photo 3"></li>
+            <br><img src="./proj4a_pic/library.jpg" width="800" alt="Main Stack library">
+        </li>
+
+        <li style="font-size: 30px;">California Hall
+            <div class="image-row">
+                <img src="./proj4a_pic/calhall1.jpg" alt="California Hall photo 1">
+                <img src="./proj4a_pic/calhall2.jpg" alt="California Hall photo 2">
+                <img src="./proj4a_pic/calhall3.jpg" alt="California Hall photo 3">
+            </div>
+        </li>
+
+        <li style="font-size: 30px;">Valley Life Science Building
+            <div class="image-row">
+                <img src="./proj4a_pic/vlsb1.jpg" width="800" alt="Valley Life Science Building photo 1">
+                <img src="./proj4a_pic/vlsb2.jpg" width="800" alt="Valley Life Science Building photo 2">
+                <img src="./proj4a_pic/vlsb3.jpg" width="800" alt="Valley Life Science Building photo 3">
+            </div>
+        </li>
+
+        <li style="font-size: 30px;">My living room
+            <div class="image-row">
+                <img src="./proj4a_pic/lv1.jpg" width="800" alt="Living room photo 1">
+                <img src="./proj4a_pic/lv2.jpg" width="800" alt="Living room photo 2">
+                <img src="./proj4a_pic/lv3.jpg" width="800" alt="Living room photo 3">
+            </div>
+        </li>
     </ul>
-    <h2 style="font-size: 30px;">Part 2</h2>
+
+    <h2 style="font-size: 30px;">Recover Homographies</h2>
     <p style="font-size: 20px;">
-        I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
-        Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
-        Finally, I did a cross-dissolve to blend two faces to get a midway face. 
-        Here is the result:
+        The function <code>computeH(im1_pts, im2_pts)</code> computes the homography matrix that transforms points from one image to another. Given two sets of corresponding points from two images, it constructs a system of linear equations and solves for the homography matrix using a least-squares approach.
     </p>
-    <img src="./proj3_pic/Part2.png" width="800" alt="Part2.png"> <br/>
+
+    <h2 style="font-size: 25px;">1. Set Up the Linear System</h2>
+    <p style="font-size: 20px;">
+        For each pair of corresponding points <b>(x<sub>1</sub>, y<sub>1</sub>)</b> from the first image and <b>(x<sub>2</sub>, y<sub>2</sub>)</b> from the second image, the system of equations is represented by the following:
+    </p>
+    <pre style="font-size: 20px;">
+        x<sub>2</sub> = h<sub>1</sub>x<sub>1</sub> + h<sub>2</sub>y<sub>1</sub> + h<sub>3</sub> - h<sub>7</sub>x<sub>1</sub>x<sub>2</sub> - h<sub>8</sub>y<sub>1</sub>x<sub>2</sub>
+        y<sub>2</sub> = h<sub>4</sub>x<sub>1</sub> + h<sub>5</sub>y<sub>1</sub> + h<sub>6</sub> - h<sub>7</sub>x<sub>1</sub>y<sub>2</sub> - h<sub>8</sub>y<sub>1</sub>y<sub>2</sub>
+    </pre>
+
+    <h2 style="font-size: 25px;">2. Matrix Construction</h2>
+    <p style="font-size: 20px;">
+        The system is rewritten into a matrix form <b>Ah = b</b>, where <b>A</b> is constructed from the points and <b>b</b> is the corresponding points from the second image. The matrix <b>A</b> and vector <b>b</b> are constructed as:
+    </p>
+    <pre style="font-size: 20px;">
+        A = [
+            [x<sub>1</sub>, y<sub>1</sub>, 1, 0, 0, 0, -x<sub>2</sub>x<sub>1</sub>, -x<sub>2</sub>y<sub>1</sub>],
+            [0, 0, 0, x<sub>1</sub>, y<sub>1</sub>, 1, -y<sub>2</sub>x<sub>1</sub>, -y<sub>2</sub>y<sub>1</sub>],
+            ...
+        ]
+    </pre>
+    <p style="font-size: 20px;">
+        The vector <b>b</b> is:
+    </p>
+    <pre style="font-size: 20px;">
+        b = [x<sub>2</sub>, y<sub>2</sub>, ...]
+    </pre>
+
+    <h2 style="font-size: 25px;">3. Solving the System</h2>
+    <p style="font-size: 20px;">
+        The system is solved using a least-squares method because the system is overdetermined when there are more than four corresponding points. The solution minimizes the error between the transformed points in the first image and the corresponding points in the second image.
+    </p>
+    <p style="font-size: 20px;">
+        The least-squares solution is given by:
+    </p>
+    <pre style="font-size: 20px;">
+        h = (A<sup>T</sup>A)<sup>-1</sup>A<sup>T</sup>b
+    </pre>
+
+    <h2 style="font-size: 25px;">4. Constructing the Homography Matrix</h2>
+    <p style="font-size: 20px;">
+        Once the solution for <b>h</b> is found, we append the value 1 to complete the 3x3 homography matrix:
+    </p>
+    <pre style="font-size: 20px;">
+        H = [
+            [h<sub>1</sub>, h<sub>2</sub>, h<sub>3</sub>],
+            [h<sub>4</sub>, h<sub>5</sub>, h<sub>6</sub>],
+            [h<sub>7</sub>, h<sub>8</sub>, 1]
+        ]
+    </pre>
+
+    <p style="font-size: 20px;">
+        This matrix <b>H</b> defines the projective transformation between the two sets of points in the images.
+    </p>
+</body>
 
     <h2 style="font-size: 30px;">Part 3</h2>
     <p style="font-size: 20px;">
