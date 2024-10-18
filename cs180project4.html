@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS180 Project 2</title>
+</head>
+<body>
+    <h1>Maochuan Lu - CS180 Project 4</h1>
 
+    <h2 style="font-size: 30px;">Part A: Overview</h2>
+    <p style="font-size: 20px;">
+       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Buidling, and my living room and align them using homographies, 
+      then I inverse warp the images using that homography matrix, and blend them into a mosaic.
+    </p>
+
+    <h2 style="font-size: 30px;">Part 1</h2>
+    <p style="font-size: 20px;">
+        First, I first label the corresponding points using the correspondance tool provided by last year's student. 
+        Secondly, I loaded facial keypoints from json file created by that tool, 
+        Thirdly, I computed the midpoint of corresponding keypoints between the two faces. 
+        Then, I use Delaunay triangulation on that midpoint. Also I visualized that triangulation on both images.
+        Here is sthe result:
+    </p>
+    <img src="./proj3_pic/Part1.png" width="600" alt="Part1.png"> <br/>
+
+    <h2 style="font-size: 30px;">Part 2</h2>
+    <p style="font-size: 20px;">
+        I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
+        Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
+        Finally, I did a cross-dissolve to blend two faces to get a midway face. 
+        Here is the result:
+    </p>
+    <img src="./proj3_pic/Part2.png" width="800" alt="Part2.png"> <br/>
+
+    <h2 style="font-size: 30px;">Part 3</h2>
+    <p style="font-size: 20px;">
+        In Part 2, I created a GIF morph sequence with 45 frames, each with a duration of 30 ms. Since the GIF file was too large to upload to GitHub, I converted it into a YouTube video. You can watch it directly below:
+    </p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ZCOOzz04D_g" 
+        title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+
+    <h2 style="font-size: 30px;">Part 4</h2>
+    <p style="font-size: 20px;">
+        I used the Danes dataset. I first get keypoints from .asf files for male and female images by parsing files.
+        Then after i do this, I firgure out that my final image only has face without background and clothes.
+        So I added extra points, specifically, I added points in the corners and boundaries.
+        Then I computed the average face shape for all, male, and female keypoints separately. 
+        In detail, for each image, I used Delaunay triangulation to warp the face into the average shape by applying affine transformations to each triangle. 
+        Here is four examples: 
+    </p>
+    <img src="./proj3_pic/Part4.1.png" width="800" alt="Part4.1.png"> <br/>
+    <img src="./proj3_pic/Part4.2.png" width="800" alt="Part4.2.png"> <br/>
+    <img src="./proj3_pic/Part4.3.png" width="800" alt="Part4.3.png"> <br/>
+    <img src="./proj3_pic/Part4.4.png" width="800" alt="Part4.4.png"> <br/>
+
+     <p style="font-size: 20px;">
+    I computed the average female, male, and Danes faces by warping each image to its average shape, averaging pixel values.
+    Here is the result
+    </p>
+    <img src="./proj3_pic/Part4.5.png" width="1100" alt="Part4.5.png"> <br/>
+    
+    <p style="font-size: 20px;">
+    Then, I loaded keypoints for me  and the average Dane face from a JSON file and warped both faces. I warped my face to the average Dane and also warped the 
+    average Dane face to match my face. Here is the result.
+    </p>
+    <img src="./proj3_pic/Part4.6.png" width="800" alt="Part4.6.png"> <br/>
+    
+
+    <h2 style="font-size: 30px;">Part 5</h2>
+    <p style="font-size: 20px;">
+    I extrapolated my keypoints from the average Dane face by calculating the difference between them with alpha. I applied two different alphas (1.5 and -0.5) to exaggerate. 
+        Here is the results using exaggerating points to warp my face to average Dane face. 
+    </p>
+    <img src="./proj3_pic/Part5.png" width="800" alt="Part5.png"> <br/>
+
+    <h2 style="font-size: 30px;">Bells and Whistles: Gender Change</h2>
+    <p style="font-size: 20px;">
+    I want to change my face (male) to female. And I did following things:
+    <u style="font-size: 20px;"l>
+        <li><strong>Appearance only:</strong> Only the appearance of myself was morphed into the average Chinese female face.</li>
+        <li><strong>Shape only:</strong> The shape was morphed halfway between me and the average female face.</li>
+        <li><strong>Shape and Appearance:</strong> Both shape and appearance were blended between the two faces.</li>
+    </ul>
+    </p>
+    <img src="./proj3_pic/Part6.png" width="800" alt="Part6.png"> <br/>
+    <a href="cs180.html">Back to CS180 Projects</a>
+</body>
+</html>
