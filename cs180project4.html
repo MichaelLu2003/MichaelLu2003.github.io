@@ -129,10 +129,25 @@
 
     <h2 style="font-size: 30px;">Warp the Images</h2>
     <p style="font-size: 20px;">
-        I warp the image using a homography matrix H. \
-        I first calculates the new positions of the image corners after applying the homography transformation. 
-        Then I creates a new image canvas or bounding box that is large enough to hold the warped image. 
-        Then I computes the inverse homography to map the target image points back to the original image. 
-        For each pixel, it checks if it is within the bounds of the original image and interpolates the pixel values using map_coordinates to fill the warped image. 
+     I first use a homography matrix H to transform an image. It calculates the new corner positions, creates an output canvas or bounding box, 
+        and then uses the inverse homography to map points from the output back to the original image. 
+        Then I use function map_coordinates to interpolates pixel values to generate the warped image.
     </p>
+
+    <h2 style="font-size: 30px;">Image Rectification</h2>
+    <p style="font-size: 20px;">
+        I first mark the four corners of the area I want to rectify, 
+        then use the previously computed homography and inverse warping to transform the distorted image into a flat, undistorted image.
+        For clear result, I crop the irrelevant pixels. 
+        Here is the results for NYC's paiting, TW's posters , and UCB's random picture:
+    </p>
+    <br><img src="./proj4a_pic/ny_painting.png" width="800" alt="nypainting">
+    <br><img src="./proj4a_pic/tw_poster.png" width="800" alt="twposter">
+    <br><img src="./proj4a_pic/lib_pic.png" width="800" alt="lib_pic">
+    
+
+    
+
+
+    
 
