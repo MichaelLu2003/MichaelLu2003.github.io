@@ -153,6 +153,33 @@
     
     <br><img src="./proj4a_pic/lv123.png" width="1200" alt="lv12">
     <br><img src="./proj4a_pic/lv.png" width="1200" alt="lv123">
+
+    <h2 style="font-size: 30px;">Harris Interest Point Detector</h2>
+    <p style="font-size: 20px;">
+     I simply use the sample code to generate Harris Interest Point like this
+    </p>
+    <br><img src="./proj4b_pic/harris.png" width="1200" alt="harris">
+
+    <h2 style="font-size: 30px;">Adaptive Non-Maximal Suppression</h2>
+    <p style="font-size: 20px;">
+     I first build a KD-tree for fast spatial queries on harris interest points. Then I compute suppression radius as following: 
+        For each corner point, we iteratively finds neighboring points until it reaches a minimum distance threshold. Among these neighbors, only those with a strength greater than threshold * strength are considered, 
+        and the closest distance to these stronger neighbors is considered as the point’s "suppression radius", just as the paper indicates.
+        Finally, we selects the points with the largest suppression radius, ensuring that only the strongest points are got. 
+    </p>
+    <br><img src="./proj4b_pic/anms.png" width="1200" alt="anms">
+
+    <h2 style="font-size: 30px;">Feature Descriptor extraction</h2>
+    <p style="font-size: 20px;">
+     For each poin I first check if a square window around it fits within the image. Is so, I make a window centered on the point, and resize it to a smaller patch.
+    Then I do the normalization and store thse descriptors. I randomly choose 4 descriptors to display as following: 
+    </p>
+    <br><img src="./proj4b_pic/descriptor.png" width="1200" alt="anms">
+
+    
+
+    
+    
 </body>
 </html>
     
