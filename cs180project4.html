@@ -174,7 +174,24 @@
      For each poin I first check if a square window around it fits within the image. Is so, I make a window centered on the point, and resize it to a smaller patch.
     Then I do the normalization and store thse descriptors. I randomly choose 4 descriptors to display as following: 
     </p>
-    <br><img src="./proj4b_pic/descriptor.png" width="1200" alt="anms">
+    <br><img src="./proj4b_pic/descriptor.png" width="1200" alt="descriptor">
+    
+    <h2 style="font-size: 30px;">Feature Matching</h2>
+    <p style="font-size: 20px;">
+    I first calculate pairwise differences between features in features1 and features2. Then I get squared Euclidean distances for all feature pairs.
+    Then I sort these distances to get the closest and second-closest matches. After this, I do Lowe’s Ratio Test and return 
+    only pairs that pass the ratio test.
+    </p>
+    <br><img src="./proj4b_pic/feature match.png" width="1200" alt="feature">
+
+    <h2 style="font-size: 30px;">4-point RANSAC</h2>
+    <p style="font-size: 20px;">
+    After get feature matching, we still find that there is mismatch in correspondance points. RANSAC helps us address this problem. 
+    I iteratively select 4 random point pairs each time. Then I calculate a homography matrix H for the sampled points. Then I transform 
+        all points in matched_pts1 using H and counts how many are within a threshold of their counterparts in matched_pts2. Then I return best H and besh inliners.
+    </p>
+    <br><img src="./proj4b_pic/ransac.png" width="1200" alt="ransac">
+    <br><img src="./proj4b_pic/ransac1.png" width="1200" alt="ransac1">
 
     
 
