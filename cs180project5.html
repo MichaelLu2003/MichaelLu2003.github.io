@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS180 Project 4</title>
+    <title>CS180 Project 5</title>
     <style>
         .image-row {
             display: flex;
@@ -17,233 +17,35 @@
     </style>
 </head>
 <body>
-    <h1>Maochuan Lu - CS180 Project 4</h1>
+    <h1>Maochuan Lu - CS180 Project 5</h1>
 
     <h2 style="font-size: 30px;">Part A: Overview</h2>
     <p style="font-size: 20px;">
-       In this project, I first shoot multiple photographs for California Hall, Valley Life Science Building, my living room, etc., align them using homographies, 
-       then I inverse warp the images using that homography matrix, and blend them into a mosaic.
+       In Project5 part A, I will play around with diffusion models, implement diffusion sampling loops, and use them for other tasks such as inpainting and creating optical illusions. 
     </p>
 
-    <h2 style="font-size: 30px;">Shoot the Pictures</h2>
+    <h2 style="font-size: 30px;">: Downloading Precomputed Text Embeddings</h2>
     <p style="font-size: 20px;">
-        Here are all the pictures I used for this project:
-    </p>
-    <ul style="font-size: 20px;">
-        <li>This is a picture from NYC Metropolitan Museum of Art:
-            <br><img src="./proj4a_pic/painting.jpg" width="500" alt="NYC Metropolitan Museum painting">
-        </li>
-        
-        <li>This is a poster I shot in Taiwan during the election:
-            <br><img src="./proj4a_pic/poster.jpg" width="500" alt="Election poster in Taiwan">
-        </li>
-        
-        <li>This is a random picture I shot in Main Stack:
-            <br><img src="./proj4a_pic/library.jpg" width="500" alt="Main Stack library">
-        </li>
-
-        <li>California Hall
-            <div class="image-row">
-                <img src="./proj4a_pic/calhall1.jpg" alt="California Hall photo 1">
-                <img src="./proj4a_pic/calhall2.jpg" alt="California Hall photo 2">
-                <img src="./proj4a_pic/calhall3.jpg" alt="California Hall photo 3">
-            </div>
-        </li>
-
-        <li>Valley Life Science Building
-            <div class="image-row">
-                <img src="./proj4a_pic/vlsb1.jpg" width="800" alt="Valley Life Science Building photo 1">
-                <img src="./proj4a_pic/vlsb2.jpg" width="800" alt="Valley Life Science Building photo 2">
-                <img src="./proj4a_pic/vlsb3.jpg" width="800" alt="Valley Life Science Building photo 3">
-            </div>
-        </li>
-
-        <li>My living room
-            <div class="image-row">
-                <img src="./proj4a_pic/lv1.jpg" width="800" alt="Living room photo 1">
-                <img src="./proj4a_pic/lv2.jpg" width="800" alt="Living room photo 2">
-                <img src="./proj4a_pic/lv3.jpg" width="800" alt="Living room photo 3">
-            </div>
-        </li>
-    </ul>
-
-    <h2 style="font-size: 30px;">Recover Homographies</h2>
-    <p style="font-size: 20px;">
-        I create the function <code>computeH(im1_pts, im2_pts)</code>. This basically computes the homography matrix that transforms points from one image to another. Given two sets of corresponding points from two images,
-        it constructs a system of linear equations and then we solve for the homography matrix using a least-squares.
-        Here is a more detailed illustaration
-    </p>
-    <p style="font-size: 20px;">
-        For each pair of corresponding points <b>(x<sub>1</sub>, y<sub>1</sub>)</b> from the first image and <b>(x<sub>2</sub>, y<sub>2</sub>)</b> from the second image, we have:
-    </p>
-    <pre style="font-size: 20px;">
-        x<sub>2</sub> = h<sub>1</sub>x<sub>1</sub> + h<sub>2</sub>y<sub>1</sub> + h<sub>3</sub> - h<sub>7</sub>x<sub>1</sub>x<sub>2</sub> - h<sub>8</sub>y<sub>1</sub>x<sub>2</sub>
-        y<sub>2</sub> = h<sub>4</sub>x<sub>1</sub> + h<sub>5</sub>y<sub>1</sub> + h<sub>6</sub> - h<sub>7</sub>x<sub>1</sub>y<sub>2</sub> - h<sub>8</sub>y<sub>1</sub>y<sub>2</sub>
-    </pre>
-
-    <p style="font-size: 20px;">
-        Then we can write into a matrix form <b>Ah = b</b>, where <b>A</b> is constructed from the points and <b>b</b> is the corresponding points from the second image. 
-        <b>A</b> and <b>b</b> are constructed following as:
-    </p>
-    <pre style="font-size: 20px;">
-        A = [
-            [x<sub>1</sub>, y<sub>1</sub>, 1, 0, 0, 0, -x<sub>2</sub>x<sub>1</sub>, -x<sub>2</sub>y<sub>1</sub>],
-            [0, 0, 0, x<sub>1</sub>, y<sub>1</sub>, 1, -y<sub>2</sub>x<sub>1</sub>, -y<sub>2</sub>y<sub>1</sub>],
-            ...
-        ]
-    </pre>
-    <p style="font-size: 20px;">
-        The  <b>b</b> is:
-    </p>
-    <pre style="font-size: 20px;">
-        b = [x<sub>2</sub>, y<sub>2</sub>, ...]
-    </pre>
-
-    <p style="font-size: 20px;">
-       Then we use least-squares method to solve above system.
-    </p>
-    <p style="font-size: 20px;">
-        Now, we get the solution for <b>h</b> , we append the value 1 to get the 3x3 homography matrix:
-    </p>
-    <pre style="font-size: 20px;">
-        H = [
-            [h<sub>1</sub>, h<sub>2</sub>, h<sub>3</sub>],
-            [h<sub>4</sub>, h<sub>5</sub>, h<sub>6</sub>],
-            [h<sub>7</sub>, h<sub>8</sub>, 1]
-        ]
-    </pre>
-
-    <h2 style="font-size: 30px;">Warp the Images</h2>
-    <p style="font-size: 20px;">
-     I first use a homography matrix H to transform an image. It calculates the new corner positions, creates an output canvas or bounding box, 
-        and then uses the inverse homography to map points from the output back to the original image. 
-        Then I use function map_coordinates to interpolates pixel values to generate the warped image.
-    </p>
-
-    <h2 style="font-size: 30px;">Image Rectification</h2>
-    <p style="font-size: 20px;">
-        I first mark the four corners of the area I want to rectify, 
-        then use the previously computed homography and inverse warping to transform the distorted image into a flat, undistorted image.
-        For clear result, I crop the irrelevant pixels. 
-        Here is the results for NYC's paiting, TW's posters , and UCB's random picture:
-    </p>
-    <br><img src="./proj4a_pic/ny_painting.png" width="1000" alt="nypainting">
-    <br><img src="./proj4a_pic/tw_poster.png" width="1000" alt="twposter">
-    <br><img src="./proj4a_pic/lib_pic.png" width="1000" alt="lib_pic">
-
-    <h2 style="font-size: 30px;">Blend the images into a mosaic</h2>
-    <p style="font-size: 20px;">In this part, I did the following procedure to combine 3 images to a panorama</p>
-    <ol style="font-size: 20px;">
-        <li>Load three images of one object from different perspective and the corresponding point dataset using given tool</li>
-
-        <li>Warp the first and third images toward the second image.</li>
-
-        <li>Create an final output canvas to merge the warped images into a single panorama.</li>
-
-        <li>Generate alpha masks to blending, smoothed them, and normalized the masks for better transitions, otherwise it will be too dark or have large exposure.</li>
-
-        <li>Use a two-band blending method, which uses low pass and high pass to each image for a smooth blend.</li>
-    </ol>
-    <p style="font-size: 20px;">Here is the results for California Hall, Valley Life Science Building and my living room</p>
-    <br><img src="./proj4a_pic/calhall123.png" width="1200" alt="calhall">
-    <br><img src="./proj4a_pic/calhall.png" width="1200" alt="calhall1">
-    
-    <br><img src="./proj4a_pic/vlsb123.png" width="1200" alt="vlsbr">
-    <br><img src="./proj4a_pic/vlsb.png" width="1200" alt="vlsb1">
-    
-    <br><img src="./proj4a_pic/lv123.png" width="1200" alt="lv12">
-    <br><img src="./proj4a_pic/lv.png" width="1200" alt="lv123">
-
-    <h2 style="font-size: 30px;">Part B: Overview</h2>
-    <p style="font-size: 20px;">
-       In this project, I follow the paper's instruction to implement harris interest point, ANMS, feature matching, RANSAC to reach auto stiching.
-    </p>
-
-    <h2 style="font-size: 30px;">Harris Interest Point Detector</h2>
-    <p style="font-size: 20px;">
-     I simply use the sample code to generate Harris Interest Point like this
-    </p>
-    <br><img src="./proj4b_pic/harris.png" width="1200" alt="harris">
-
-    <h2 style="font-size: 30px;">Adaptive Non-Maximal Suppression</h2>
-    <p style="font-size: 20px;">
-     I first build a KD-tree for fast spatial queries on harris interest points. Then I compute suppression radius as following: 
-        For each corner point, we iteratively finds neighboring points until it reaches a minimum distance threshold. Among these neighbors, only those with a strength greater than threshold * strength are considered, 
-        and the closest distance to these stronger neighbors is considered as the point’s "suppression radius", just as the paper indicates.
-        Finally, we selects the points with the largest suppression radius, ensuring that only the strongest points are got. 
-    </p>
-    <br><img src="./proj4b_pic/anms.png" width="1200" alt="anms">
-
-    <h2 style="font-size: 30px;">Feature Descriptor extraction</h2>
-    <p style="font-size: 20px;">
-     For each poin I first check if a square window around it fits within the image. Is so, I make a window centered on the point, and resize it to a smaller patch.
-    Then I do the normalization and store thse descriptors. I randomly choose 4 descriptors to display as following: 
-    </p>
-    <br><img src="./proj4b_pic/descriptor.png" width="1200" alt="descriptor">
-    
-    <h2 style="font-size: 30px;">Feature Matching</h2>
-    <p style="font-size: 20px;">
-    I first calculate pairwise differences between features in features1 and features2. Then I get squared Euclidean distances for all feature pairs.
-    Then I sort these distances to get the closest and second-closest matches. After this, I do Lowe’s Ratio Test and return 
-    only pairs that pass the ratio test.
-    </p>
-    <br><img src="./proj4b_pic/feature match.png" width="1200" alt="feature">
-
-    <h2 style="font-size: 30px;">4-point RANSAC</h2>
-    <p style="font-size: 20px;">
-    After get feature matching, we still find that there is mismatch in correspondance points. RANSAC helps us address this problem. 
-    I iteratively select 4 random point pairs each time. Then I calculate a homography matrix H for the sampled points. Then I transform 
-        all points in matched_pts1 using H and counts how many are within a threshold of their counterparts in matched_pts2. Then I return best H and besh inliners.
-    </p>
-    <br><img src="./proj4b_pic/ransac.png" width="1200" alt="ransac">
-
-    <h2 style="font-size: 30px;">Mosaic Result</h2>
-    <p style="font-size: 20px;">
-        I used two images from part A and took three additional photos outside my apartment.
-    </p>
-    
-    <!-- Valley Life Science Building -->
-    <ul style="font-size: 20px;">
-        <li>Valley Life Science Building:</li> 
-    </ul>
-    <p style="font-size: 20px;"> 
-        The first image is from part A, using manually selected points. The second image shows the corresponding points after RANSAC, and the third image is created using autostitching.
-    </p>
-    <br><img src="./proj4a_pic/vlsb.png" width="1200" alt="vlsb">
-    <br><img src="./proj4b_pic/ransac1.png" width="1200" alt="ransac1">
-    <br><img src="./proj4b_pic/whole vlsb.png" width="1200" alt="whole vlsb">
-    
-    <!-- California Hall -->
-    <ul style="font-size: 20px;">
-        <li>California Hall:</li> 
-    </ul>
-    <p style="font-size: 20px;"> 
-        The first image is from part A, using manually selected points. The second image shows the corresponding points after RANSAC, and the third image is created using autostitching.
-    </p>
-    <br><img src="./proj4a_pic/calhall.png" width="1200" alt="calhall">
-    <br><img src="./proj4b_pic/ransac2.png" width="1200" alt="ransac2">
-    <br><img src="./proj4b_pic/whole calhall.png" width="1200" alt="whole cal">
-    
-    <!-- Outside -->
-    <ul style="font-size: 20px;">
-        <li>Outside:</li> 
-    </ul>
-    <p style="font-size: 20px;"> 
-        The first image shows the corresponding points after RANSAC, and the second image is created using autostitching.
-    </p>
-    <br><img src="./proj4b_pic/ransac3.png" width="1200" alt="ransace">
-    <br><img src="./proj4b_pic/whole outside.png" width="1200" alt="whole outside">
-
-    <h2 style="font-size: 30px;">Reflection</h2>
-    <p style="font-size: 20px;">
-        In this projecs, I learn more about image alignment and stitching techniques. 
-        I applied homography estimation, image warping, and blending to create seamless panoramas in part A.
-        and I also implement Harris corner detection, ANMS, and Lowe’s Ratio Test for feature matching, 
-        To improve alignment accuracy, I implement RANSAC to filter out mismatches. 
-        The results are really fascinating and I really enjoy this project it is so cool! 
-    </p>
-
-
+        I use seeds = 180, and num_inference_steps = 10, 20, and 40, for the following pictures, 
+        We can see that increasing num_inference_steps generally enhances the detail and clarity of generated images, also they all represent their corresponding prompt except the detail in the generated image is different: 
+        at num_inference_steps = 10, images tend to be less detailed and may appear rough, with features like the hat being less defined, we can see that the man with hat looks like in a oil painting rather than a real photo.
+        With 20 steps, there's a improvement, it shows a better clarity and more detail, we can see that the features in generated images are more recognizable.
+        At 40 steps, images are at their most refined, with highly detailed textures, sharper edges, and natural shading, making features like the hat look more realistic.
+    </p> 
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <h3>num_inference_steps = 10</h3>
+        <img src="proj5a_pic/inference_step=10.png" alt="Image with 10 Inference Steps" width="500">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <h3>num_inference_steps = 20</h3>
+        <img src="proj5a_pic/inference_step=20.png" alt="Image with 20 Inference Steps" width="500">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <h3>num_inference_steps = 40</h3>
+        <img src="proj5a_pic/inference_step=40.png" alt="Image with 40 Inference Steps" width="500">
+    </div>
+</div>
 
     
 
