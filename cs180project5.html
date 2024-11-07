@@ -181,6 +181,40 @@
         <img src="proj5a_pic/1.716.png" alt="1.716" width="800">
     </div>
     </div>
+
+    <h2 style="font-size: 30px;">1.7.2 Inpainting</h2>
+    <p style="font-size: 20px;">
+        In this part, I perform inpainting on 3 images by filling in masked regions using a guided denoising process. 
+        The inpaint function starts with a noisy image generated from input image and applies CFG to denoise it over multiple timesteps, using the prompt "a high quality photo".
+        For each timestep, just like before, I calculate noise estimates from both the conditional and unconditional U-Net models. 
+        Then I use CFG to refine the noise estimate. Using the formula provided, In masked areas, the updated image is retained, while in non-masked areas, the original image is preserved using the mask. 
+    </p> 
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <h3>Campanile</h3>
+        <img src="proj5a_pic/1.7.2.png" alt="1.7222" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.7.21.png" alt="1.721" width="200">
+    </div>
+        
+    <div style="margin-bottom: 20px;">
+        <<h3>Space Neddle</h3>
+        <img src="proj5a_pic/1.7.22.png" alt="1.7222" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.7.23.png" alt="1.723" width="200">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h3>Lake</h3>
+        <img src="proj5a_pic/1.7.24.png" alt="1.724" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.7.25.png" alt="1.725" width="200">
+    </div>
+    </div>
+
     
 
     
