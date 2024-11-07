@@ -85,6 +85,22 @@
         <img src="proj5a_pic/1.3.png" alt="1.3" width="800">
     </div>
     </div>
+
+    <h2 style="font-size: 30px;">1.4 Implementing Iterative Denoising</h2>
+    <p style="font-size: 20px;">
+       I implement iterative denoising on a noisy version of test_im using a U-Net model with a prompt embedding. 
+        I first start by adding noise to test_im and then performs iterative denoising over several timesteps.
+        Specifically, in the iterative_denoise function, each iteration calculates a progressively less noisy version of the image by estimating and removing noise. 
+        For each timestep t, I use the formula provided to compute alpha and beta values based on cumulative noise, 
+        then uses the U-Net model to predict the noise in the current image. 
+        This predicted noise is subtracted to estimate a x0, and a weighted average between this estimate and the previous image gives the pred_prev_image for the next timestep. 
+    </p> 
+    
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.4.png" alt="1.4" width="800">
+    </div>
+    </div>
     
 
     
