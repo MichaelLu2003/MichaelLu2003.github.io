@@ -103,6 +103,34 @@
     </div>
     
 
+    <h2 style="font-size: 30px;">1.5 Diffusion Model Sampling</h2>
+    <p style="font-size: 20px;">
+      I generate five random noisy images and iteratively denoises each one using a U-Net model with the text prompt "a high quality photo". 
+        For each noisy image, I use the iterative_denoise function to progressively reduce noise over a series of timesteps, resulting in cleaner images.  
+    </p> 
+    
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.5.png" alt="1.5" width="800">
+    </div>
+    </div>
+
+    <h2 style="font-size: 30px;">1.6 Classifier Free Guidance</h2>
+    <p style="font-size: 20px;">
+      The quality of previous part's image are not very good, so I use CFG to improve. It is really similar to iteratively denosing.
+    Basically, I denoise five randomly generated noisy images, refining each towards a cleaner version guided by a specific prompt. 
+        It first defines conditional and unconditional embeddings for CFG. Then I progressively removes noise from each image across a series of timesteps by combining noise estimates from both conditional and unconditional models by using the formula of CFG. 
+        In this case, we can direct the denoising process towards the desired prompt ("a high quality photo").
+        
+    </p> 
+    
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.6.png" alt="1.6" width="800">
+    </div>
+    </div>
+    
+
     
 
     
