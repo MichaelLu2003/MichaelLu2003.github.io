@@ -192,26 +192,26 @@
     <div style="text-align: center;">
     <div style="margin-bottom: 20px;">
         <h3>Campanile</h3>
-        <img src="proj5a_pic/1.7.2.png" alt="1.7222" width="800">
+        <img src="proj5a_pic/1.7.2.png" alt="1.7222" width="700">
     </div>
     <div style="margin-bottom: 20px;">
-        <img src="proj5a_pic/1.7.21.png" alt="1.721" width="200">
+        <img src="proj5a_pic/1.7.21.png" alt="1.721" width="250">
     </div>
         
     <div style="margin-bottom: 20px;">
         <<h3>Space Neddle</h3>
-        <img src="proj5a_pic/1.7.22.png" alt="1.7222" width="800">
+        <img src="proj5a_pic/1.7.22.png" alt="1.7222" width="700">
     </div>
     <div style="margin-bottom: 20px;">
-        <img src="proj5a_pic/1.7.23.png" alt="1.723" width="200">
+        <img src="proj5a_pic/1.7.23.png" alt="1.723" width="250">
     </div>
 
     <div style="margin-bottom: 20px;">
         <h3>Lake</h3>
-        <img src="proj5a_pic/1.7.24.png" alt="1.724" width="800">
+        <img src="proj5a_pic/1.7.24.png" alt="1.724" width="700">
     </div>
     <div style="margin-bottom: 20px;">
-        <img src="proj5a_pic/1.7.25.png" alt="1.725" width="200">
+        <img src="proj5a_pic/1.7.25.png" alt="1.725" width="250">
     </div>
     </div>
 
@@ -234,7 +234,7 @@
         <img src="proj5a_pic/needle.jpg" alt="needle" width="200">
     </div>
     <div style="margin-bottom: 20px;">
-        <img src="proj5a_pic/1.7.3.2.png" alt="1.732" width="200">
+        <img src="proj5a_pic/1.7.3.2.png" alt="1.732" width="800">
     </div>
 
     <div style="margin-bottom: 20px;">
@@ -242,7 +242,38 @@
         <img src="proj5a_pic/stf.jpeg" alt="stf" width="200">
     </div>
     <div style="margin-bottom: 20px;">
-        <img src="proj5a_pic/1.7.3.3.png" alt="1.733" width="200">
+        <img src="proj5a_pic/1.7.3.3.png" alt="1.733" width="800">
+    </div>
+    </div>
+
+    <h2 style="font-size: 30px;">1.8 Visual Anagrams</h2>
+    <p style="font-size: 20px;">
+       In this part, I create a mirrored "flip illusion" effect by iteratively denoising an image using two different prompt embeddings: one for the original image and one for its flipped version. 
+        The function make_flip_illusion denoises the image over a series of timesteps, alternating between the original and flipped image versions: 
+        For each timestep, it applies CFG just like before to denoise on both the original image and its flipped version, using separate prompt embeddings.
+        Then it use the formula provided to average two noise generated from two prompt embeddings. Then following things is same as before, it gradually refines the image based on the combined effect of the prompts and their flips, 
+        creating a balanced, mirrored "flip illusion" effect in the final denoised image.
+    </p> 
+    <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <img src="proj5a_pic/1.8.1.png" alt="1.8.1" width="800">
+    </div>
+    <div>
+        <img src="proj5a_pic/1.8.2.png" alt="1.8.2" width="800">
+    </div>
+        
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.8.3.png" alt="1.8.3" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.8.4.png" alt="1.8.4" width="800">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.8.5.png" alt="1.8.5" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1..8.6.png" alt="1.8.8" width="800">
     </div>
     </div>
 
