@@ -24,7 +24,7 @@
        In Project5 part A, I will play around with diffusion models, implement diffusion sampling loops, and use them for other tasks such as inpainting and creating optical illusions. 
     </p>
 
-    <h2 style="font-size: 30px;">: Downloading Precomputed Text Embeddings</h2>
+    <h2 style="font-size: 30px;">Downloading Precomputed Text Embeddings</h2>
     <p style="font-size: 20px;">
         I use seeds = 180, and num_inference_steps = 10, 20, and 40, for the following pictures, 
         We can see that increasing num_inference_steps generally enhances the detail and clarity of generated images, also they all represent their corresponding prompt except the detail in the generated image is different: 
@@ -46,6 +46,16 @@
         <img src="proj5a_pic/inference_step=40.png" alt="Image with 40 Inference Steps" width="800">
     </div>
 </div>
+    
+    <h2 style="font-size: 30px;">1.1 Implementing the Forward Process</h2>
+    <p style="font-size: 20px;">
+        I generates noisy images of test_im at different noise levels based on specified timesteps (t=250, t=500, and t=750). 
+        The forward function adds Gaussian noise to the image according to each timestep's cumulative alpha value. 
+    </p> 
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.1.png" alt="Image with 10 Inference Steps" width="800">
+    </div>
 
     
 
