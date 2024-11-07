@@ -149,7 +149,38 @@
         <h3>num_inference_steps = 40</h3>
         <img src="proj5a_pic/1.73.png" alt="1.73" width="1000">
     </div>
-</div>
+    </div>
+
+    <h2 style="font-size: 30px;">1.7.1 Editing Hand-Drawn and Web Images</h2>
+    <p style="font-size: 20px;">
+        In this part, I use one image from the web and two hand-drawn images. With the provided tools, I basically use SDEdit with CFG to denoise a progressively noisier version of web or hand-drawn image
+        using the prompt "a high quality photo". For each starting noise level (i_start=1, 3, 5, 7, 10, and 20), I add noise to these images, then uses iterative_denoise_cfg to gradually remove the noise and produce a clean image. 
+    </p> 
+    <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <h3>Original Web Image</h3>
+        <img src="proj5a_pic/1.711.png" alt="1.711" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.712.png" alt="1.712" width="800">
+    </div>
+        
+    <div style="margin-bottom: 20px;">
+        <h3>Original Hand-Drawn Image</h3>
+        <img src="proj5a_pic/1.713.png" alt="1.713" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.714.png" alt="1.714" width="800">
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <h3>Original Hand-Drawn Image</h3>
+        <img src="proj5a_pic/1.715.png" alt="1.715" width="800">
+    </div>
+    <div style="margin-bottom: 20px;">
+        <img src="proj5a_pic/1.716.png" alt="1.716" width="800">
+    </div>
+    </div>
     
 
     
