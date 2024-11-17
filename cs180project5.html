@@ -347,6 +347,42 @@
     </div>
     </div>
 
+    <h2 style="font-size: 30px;">Part 2: Training a Diffusion Model</h2>
+
+    <h2 style="font-size: 30px;">Part 2.1 Adding Time Conditioning to UNet</h2>
+    <p style="font-size: 20px;">
+        I basically added the time embedding to the previous architecture, following the instructions from the website.
+    </p> 
+
+    <h2 style="font-size: 30px;">Part 2.2 Training the UNet</h2>
+    <p style="font-size: 20px;">
+        I first implement ddpm_schedule, ddpm_forward in the colab. Then I started training it using the hyperparameters from the website. Here is the training curve.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.7.png" alt="1.7b" width="800">
+    </div>
+    </div>
+
+    <h2 style="font-size: 30px;">Part 2.3 Sampling from the UNet</h2>
+    <p style="font-size: 20px;">
+        I then implement ddpm_sample, and here is the sample result after 5 epochs.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.6.png" alt="1.6b" width="700">
+    </div>
+    </div>
+
+    <p style="font-size: 20px;">
+        Here is the sample result after 20 epochs.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.8.png" alt="1.6b" width="700">
+    </div>
+    </div>
+
 
 
     
