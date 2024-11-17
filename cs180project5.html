@@ -379,9 +379,40 @@
     </p> 
      <div style="text-align: center;">
     <div style="margin-bottom: 20px;">
-        <img src="proj5b_pic/1.8.png" alt="1.6b" width="700">
+        <img src="proj5b_pic/1.8.png" alt="1.8b" width="700">
     </div>
     </div>
+
+    <h2 style="font-size: 30px;">Part 2.4 Adding Class-Conditioning to UNet</h2>
+    <p style="font-size: 20px;">
+        Based on the Time Conditioning Unet, I add the class embedding following the instruction in the website. Also, I train this Unet using learning rate 1e-4, batch size = 128, and hidden_dim = 128.
+        Here is the training curve.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.10.png" alt="1.10b" width="800">
+    </div>
+    </div>
+
+    <h2 style="font-size: 30px;">Part 2.5 Sampling from the Class-Conditioned UNet</h2>
+    <p style="font-size: 20px;">
+        I then implement ddpm_sample in the Class-Conditioned Unet. Here is the ssampling result after 5 epoches.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.9.png" alt="1.9b" width="700">
+    </div>
+    </div>
+
+    <p style="font-size: 20px;">
+        Here is the sample result after 20 epochs.
+    </p> 
+     <div style="text-align: center;">
+    <div style="margin-bottom: 20px;">
+        <img src="proj5b_pic/1.11.png" alt="1.11b" width="700">
+    </div>
+    </div>
+
 
 
 
