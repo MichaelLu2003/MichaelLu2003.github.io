@@ -44,28 +44,17 @@
         v(x, y) = \text{background}(x, y) \quad \forall (x, y) \in \text{boundary}.
     </code>
 </div>
-<ol>
-    <li>
-        <strong>Setup:</strong> Initializes variables for the object image, mask, and background image. 
-        Each pixel in the mask is mapped to a variable, and neighboring relationships are represented 
-        in a sparse matrix <code>A</code> and vector <code>b</code>.
-    </li>
-    <li>
-        <strong>Gradient Constraints:</strong> For each pixel in the mask:
-        <ul>
-            <li>If the neighbor is inside the mask, the gradient from the object image is preserved.</li>
-            <li>If the neighbor is outside the mask, the gradient is aligned with the background image.</li>
-        </ul>
-    </li>
-    <li>
-        <strong>Least Squares Solution:</strong> Solves the sparse linear system <code>Av = b</code> 
-        using <code>lsqr</code>, where <code>v</code> contains the reconstructed pixel intensities.
-    </li>
-    <li>
-        <strong>Blend and Return:</strong> Updates the pixels in the blended region and returns 
-        the output image, seamlessly integrating the object into the background.
-    </li>
-</ol>
+<p>
+    The process begins by initializing variables for the object image, mask, and background image, 
+    where each pixel in the mask is mapped to a variable, and neighboring relationships are 
+    represented in a sparse matrix <code>A</code> and vector <code>b</code>. For each pixel 
+    in the mask, gradient constraints are enforced: if a neighbor lies within the mask, the gradient 
+    from the object image is preserved, while if it lies outside, the gradient aligns with the 
+    background image. This setup leads to solving the sparse linear system <code>Av = b</code> 
+    using <code>lsqr</code>, where <code>v</code> represents the reconstructed pixel intensities. 
+    Finally, the pixels in the blended region are updated, seamlessly integrating the object into 
+    the background to produce the output image.
+</p>
 
 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
     <div style="text-align: center;">
