@@ -24,14 +24,14 @@
 
 <body>
     <h2 style="font-size: 50px; text-align: center;">Maochuan Lu - Final Project</h2>
-    <h2 style="font-size: 40px;">Project 1 Gradient Domain Fusion</h2>
+    <h2 style="font-size: 40px; text-align: center;">Project 1 Gradient Domain Fusion</h2>
 
-    <h2 style="font-size: 30px;">Overview</h2>
+    <h2 style="font-size: 30px; text-align: center;">Overview</h2>
     <p style="font-size: 20px;">
         In this project, we are going to implement Poisson Blending and Mixed Gradient in Bells & Whistles to seamlessly blend an object or texture from a source image into a target image.
     </p>
 
-    <h2 style="font-size: 30px;">Part 1 Toy Problem</h2>
+    <h2 style="font-size: 30px; text-align: center;">Part 1 Toy Problem</h2>
     <p style="font-size: 20px;">
       In this part, I reconstruct a toy image from its gradients by solving a sparse linear system using least squares. 
       The process is same as the implementation details: I firstly try to map each pixel to a variable index and then I define a sparse matrix <code>A</code> and  
@@ -41,7 +41,7 @@
     </p>
     <img src="./final_project/gradient_domain/part1.png" width="600" alt="part1.png"> <br/>
 
-<h2 style="font-size: 30px;">Part 2 Poisson Blending</h2>
+<h2 style="font-size: 30px; text-align: center;">Part 2 Poisson Blending</h2>
 <p>
     In this part, I implement Poisson blending, which is a wonderful technique that merges an object image
     into a background image seamlessly through gradient tricks. 
@@ -131,7 +131,7 @@
  </p>
 
 
-<h2 style="font-size: 30px;">Part 3 Bells & Whistles Mixed Gradients</h2>
+<h2 style="font-size: 30px; text-align: center;">Part 3 Bells & Whistles Mixed Gradients</h2>
 <p>
     Other than Poisson Blending, Mixed gradients are also used to seamlessly blend an object image into a target image by preserving the stronger gradient
     between the two. This technique addresses a problem that Poisson blending might fail, such as when 
@@ -178,13 +178,13 @@
 </div>
 
 
-    <h2 style="font-size: 40px;">Project 2 Poor Man's Augmented Reality</h1>
+    <h2 style="font-size: 40px; text-align: center;">Project 2 Poor Man's Augmented Reality</h1>
     
-    <h2 style="font-size: 30px;">Overview</h2>
+    <h2 style="font-size: 30px; text-align: center;">Overview</h2>
     <p style="font-size: 20px;">
         In Project 2, I will try to do something about augmented reality! I will show how to insert a cube into the video consistently.
     </p>
-    <h2 style="font-size: 30px;">Setup</h2>
+    <h2 style="font-size: 30px; text-align: center;">Setup</h2>
     <p style="font-size: 20px;">
         I clip some white papers to attach to 6 sides of the Amazon delivery box and draw grids and points on it. Here is the input video: 
     </p>
@@ -197,7 +197,7 @@
         allowfullscreen>
     </iframe>
 
-    <h2 style="font-size: 30px;">Keypoints with known 3D world coordinates & Propogating Keypoints to other Images in the Video</h2>
+    <h2 style="font-size: 30px; text-align: center;">Keypoints with known 3D world coordinates & Propogating Keypoints to other Images in the Video</h2>
     <p style="font-size: 20px;">
         In this part, I first follow the instruction to create a csv file to store 2d points and 3d points. Then I use Optical Flow with Lucas-Kanade method to track points.
         Here is the result video:
@@ -211,7 +211,7 @@
         allowfullscreen>
     </iframe>
         
-    <h2 style="font-size: 30px;">Calibrating the Camera</h2>
+    <h2 style="font-size: 30px; text-align: center;">Calibrating the Camera</h2>
 <p style="font-size: 20px;">
     The goal of camera calibration is to compute the projection matrix \(P\), which maps 3D points 
     \((x, y, z)\) in the real world to their corresponding 2D points \((u, v)\) in the image plane. 
@@ -264,7 +264,7 @@
     Then we can use SVD to find \(P\) and normalize it. 
 </p>
 
-    <h2 style="font-size: 30px;">Projecting a cube in the Scene</h2>
+    <h2 style="font-size: 30px; text-align: center;">Projecting a cube in the Scene</h2>
     <p style="font-size: 20px;">
         Once I have the above calibrating matrix, then I can project a 3D cube onto a 2D image plane 
         using it and visualized the cube by drawing its faces and edges in the image. Here is the output videos:
