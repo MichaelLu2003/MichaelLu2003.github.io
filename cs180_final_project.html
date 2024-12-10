@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CS180 Final Project</title>
 </head>
+<h1>Maochuan Lu - Final Project</h1>
+
 <body>
-    <h1>Maochuan Lu - Project 1 Gradient Domain Fusion</h1>
+    <h1Project 1 Gradient Domain Fusion</h1>
 
     <h2 style="font-size: 30px;">Overview</h2>
     <p style="font-size: 20px;">
@@ -164,7 +166,7 @@
 </div>
 
 
-    <h1>Maochuan Lu - Project 2 Poor Man's Augmented Reality</h1>
+    <h1>Project 2 Poor Man's Augmented Reality</h1>
     
     <h2 style="font-size: 30px;">Overview</h2>
     <p style="font-size: 20px;">
@@ -196,6 +198,63 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen>
     </iframe>
+        
+    <h2 style="font-size: 30px;">Calibrating the Camera</h2>
+<p style="font-size: 20px;">
+    The goal of camera calibration is to compute the projection matrix \(P\), which maps 3D points 
+    \((x, y, z)\) in the real world to their corresponding 2D points \((u, v)\) in the image plane. 
+    This can be formulated as:
+</p>
+<div style="text-align: center; margin: 20px 0;">
+    \[
+    \begin{bmatrix}
+    u \\
+    v \\
+    1
+    \end{bmatrix}
+    =
+    P
+    \begin{bmatrix}
+    x \\
+    y \\
+    z \\
+    1
+    \end{bmatrix},
+    \]
+</div>
+<p style="font-size: 20px;">
+    where \(P\) is a \(3 \times 4\) projection matrix. To compute \(P\), we solve a linear system derived from the 
+    correspondence between the 3D points \((x, y, z)\) and the 2D points \((u, v)\). Each correspondence generates 
+    two equations of the form:
+</p>
+<div style="text-align: center; margin: 20px 0;">
+    \[
+    \begin{aligned}
+    u &= p_{11}x + p_{12}y + p_{13}z + p_{14} - (p_{31}x + p_{32}y + p_{33}z + p_{34})u, \\
+    v &= p_{21}x + p_{22}y + p_{23}z + p_{24} - (p_{31}x + p_{32}y + p_{33}z + p_{34})v.
+    \end{aligned}
+    \]
+</div>
+<p style="font-size: 20px;">
+    These equations can be rearranged into a matrix \(A\), where each correspondence contributes two rows:
+</p>
+<div style="text-align: center; margin: 20px 0;">
+    \[
+    A =
+    \begin{bmatrix}
+    x & y & z & 1 & 0 & 0 & 0 & 0 & -ux & -uy & -uz & -u \\
+    0 & 0 & 0 & 0 & x & y & z & 1 & -vx & -vy & -vz & -v \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots
+    \end{bmatrix}.
+    \]
+</div>
+<p style="font-size: 20px;">
+    Using Singular Value Decomposition (SVD), \(P\) is obtained as the last row of \(V^T\) (or equivalently the last column 
+    of \(V\)), reshaped into a \(3 \times 4\) matrix. Finally, we normalize \(P\) such that \(P_{3, 4} = 1\), ensuring 
+    a consistent scale.
+</p>
+
+    
     
     <!-- Third YouTube Video -->
     <iframe width="560" height="315" 
