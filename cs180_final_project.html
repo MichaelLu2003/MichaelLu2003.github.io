@@ -69,7 +69,15 @@
     
     <img src="./proj3_pic/Part2.png" width="800" alt="Part2.png"> <br/>
 
-    <h2 style="font-size: 30px;">Part 3</h2>
+
+
+
+
+
+
+
+    
+    <h2 style="font-size: 30px;">Project 2 Poor Man's Augmented Reality</h2>
     <p style="font-size: 20px;">
         In Part 2, I created a GIF morph sequence with 45 frames, each with a duration of 30 ms. Since the GIF file was too large to upload to GitHub, I converted it into a YouTube video. You can watch it directly below:
     </p>
@@ -78,50 +86,5 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen></iframe>
 
-    <h2 style="font-size: 30px;">Part 4</h2>
-    <p style="font-size: 20px;">
-        I used the Danes dataset. I first get keypoints from .asf files for male and female images by parsing files.
-        Then after i do this, I firgure out that my final image only has face without background and clothes.
-        So I added extra points, specifically, I added points in the corners and boundaries.
-        Then I computed the average face shape for all, male, and female keypoints separately. 
-        In detail, for each image, I used Delaunay triangulation to warp the face into the average shape by applying affine transformations to each triangle. 
-        Here is four examples: 
-    </p>
-    <img src="./proj3_pic/Part4.1.png" width="800" alt="Part4.1.png"> <br/>
-    <img src="./proj3_pic/Part4.2.png" width="800" alt="Part4.2.png"> <br/>
-    <img src="./proj3_pic/Part4.3.png" width="800" alt="Part4.3.png"> <br/>
-    <img src="./proj3_pic/Part4.4.png" width="800" alt="Part4.4.png"> <br/>
-
-     <p style="font-size: 20px;">
-    I computed the average female, male, and Danes faces by warping each image to its average shape, averaging pixel values.
-    Here is the result
-    </p>
-    <img src="./proj3_pic/Part4.5.png" width="1100" alt="Part4.5.png"> <br/>
-    
-    <p style="font-size: 20px;">
-    Then, I loaded keypoints for me  and the average Dane face from a JSON file and warped both faces. I warped my face to the average Dane and also warped the 
-    average Dane face to match my face. Here is the result.
-    </p>
-    <img src="./proj3_pic/Part4.6.png" width="800" alt="Part4.6.png"> <br/>
-    
-
-    <h2 style="font-size: 30px;">Part 5</h2>
-    <p style="font-size: 20px;">
-    I extrapolated my keypoints from the average Dane face by calculating the difference between them with alpha. I applied two different alphas (1.5 and -0.5) to exaggerate. 
-        Here is the results using exaggerating points to warp my face to average Dane face. 
-    </p>
-    <img src="./proj3_pic/Part5.png" width="800" alt="Part5.png"> <br/>
-
-    <h2 style="font-size: 30px;">Bells and Whistles: Gender Change</h2>
-    <p style="font-size: 20px;">
-    I want to change my face (male) to female. And I did following things:
-    <u style="font-size: 20px;"l>
-        <li><strong>Appearance only:</strong> Only the appearance of myself was morphed into the average Chinese female face.</li>
-        <li><strong>Shape only:</strong> The shape was morphed halfway between me and the average female face.</li>
-        <li><strong>Shape and Appearance:</strong> Both shape and appearance were blended between the two faces.</li>
-    </ul>
-    </p>
-    <img src="./proj3_pic/Part6.png" width="800" alt="Part6.png"> <br/>
-    <a href="cs180.html">Back to CS180 Projects</a>
 </body>
 </html>
