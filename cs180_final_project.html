@@ -119,9 +119,9 @@
 
 <h2 style="font-size: 30px;">Part 3 Bells & Whistles Mixed Gradients</h2>
 <p>
-    Mixed gradients are used to seamlessly blend an object image into a target image by preserving the stronger gradient
-    between the two. This technique addresses cases where traditional Poisson blending might fail, such as when 
-    blending text or other high-contrast features.
+    Other than Poisson Blending, Mixed gradients are also used to seamlessly blend an object image into a target image by preserving the stronger gradient
+    between the two. This technique addresses a problem that Poisson blending might fail, such as when 
+    blending text.
 </p>
 <p>
     The optimization problem for mixed gradients can be expressed as:
@@ -136,9 +136,6 @@
     ((v_i - t_j) - d_{ij})^2
     \]
 </div>
-<p>
-    Here, <code>d_{ij}</code> represents the stronger gradient value from either the source or the target image:
-</p>
 <div style="text-align: center; margin: 20px 0;">
     \[
     d_{ij} = 
@@ -149,9 +146,7 @@
     \]
 </div>
 <p>
-    By using the mixed gradient, the algorithm prioritizes gradients from the source image if they are larger in magnitude,
-    or from the target image otherwise. This approach is particularly effective for blending text or patterns with sharp 
-    gradients into a target image, ensuring better alignment and visual consistency.
+    This method is really effective for blending text into a target image, ensuring better visual consistency. Here is my result
 </p>
 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
     <div style="text-align: center;">
