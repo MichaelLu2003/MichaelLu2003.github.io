@@ -112,12 +112,62 @@
         <p style="font-size: 18px;">Blended Image</p>
     </div>
 </div>
-<p>Note this image does not blend really well because the dark black sky around the moon doesn’t match the bright blue sky of the background, making it hard to smoothly merge the colors </p>
+<p><p>
+    Note: While this image does not blend perfectly at the bottom of the moon due to the contrast between the dark black sky around the moon and the bright blue sky of the background, the result is still acceptable under these conditions.
+</p>
+ </p>
 
 
-    
-
-
+<h2 style="font-size: 30px;">Part 3 Bells & Whistles Mixed Gradients</h2>
+<p>
+    Mixed gradients are used to seamlessly blend an object image into a target image by preserving the stronger gradient
+    between the two. This technique addresses cases where traditional Poisson blending might fail, such as when 
+    blending text or other high-contrast features.
+</p>
+<p>
+    The optimization problem for mixed gradients can be expressed as:
+</p>
+<div style="text-align: center; margin: 20px 0;">
+    \[
+    \mathbf{v} = \arg\min_{\mathbf{v}} 
+    \sum_{i \in S, j \in N_i \cap S} 
+    ((v_i - v_j) - d_{ij})^2 
+    + 
+    \sum_{i \in S, j \in N_i \cap \neg S} 
+    ((v_i - t_j) - d_{ij})^2
+    \]
+</div>
+<p>
+    Here, <code>d_{ij}</code> represents the stronger gradient value from either the source or the target image:
+</p>
+<div style="text-align: center; margin: 20px 0;">
+    \[
+    d_{ij} = 
+    \begin{cases} 
+    s_i - s_j & \text{if } |s_i - s_j| > |t_i - t_j|, \\
+    t_i - t_j & \text{otherwise}.
+    \end{cases}
+    \]
+</div>
+<p>
+    By using the mixed gradient, the algorithm prioritizes gradients from the source image if they are larger in magnitude,
+    or from the target image otherwise. This approach is particularly effective for blending text or patterns with sharp 
+    gradients into a target image, ensuring better alignment and visual consistency.
+</p>
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part3_text.jpg" width="400" alt="Object Image">
+        <p style="font-size: 18px;">Object Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part3_wall.jpeg" width="400" alt="Background Image">
+        <p style="font-size: 18px;">Background Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part3.png" width="400" alt="Blended Image">
+        <p style="font-size: 18px;">Blended Image</p>
+    </div>
+</div>
 
 
 
