@@ -25,12 +25,9 @@
 
     <h2 style="font-size: 30px;">Part 2 Poisson Blending</h2>
     <p>
-        Poisson blending is a seamless image editing technique that merges an object image into a 
-        background image using gradient domain manipulation. The goal is to solve for pixel values 
-        within the mask region such that the gradients inside the mask match those of the object image 
-        while maintaining consistency with the background image at the boundaries.
+        In this part, I implement poisson blending, which is a wonderful technique that merges an object image
+        into a background image seamlessly through gradient trick. 
     </p>
-    <h2>Mathematical Expression</h2>
     <p>
         The problem can be formulated as a minimization problem:
     </p>
@@ -47,15 +44,6 @@
             v(x, y) = \text{background}(x, y) \quad \forall (x, y) \in \text{boundary}.
         </code>
     </div>
-    <p>
-        Here:
-        <ul>
-            <li><code>\( v(x, y) \)</code> represents the pixel intensities to be blended.</li>
-            <li><code>\( \nabla \)</code> denotes the gradient operator.</li>
-            <li>The boundary condition ensures smooth transitions between the object and background.</li>
-        </ul>
-    </p>
-    <h2>Steps in the Algorithm</h2>
     <ol>
         <li>
             <strong>Setup:</strong> Initializes variables for the object image, mask, and background image. 
