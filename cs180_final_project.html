@@ -24,12 +24,61 @@
     <img src="./final_project/gradient_domain/part1.png" width="600" alt="part1.png"> <br/>
 
     <h2 style="font-size: 30px;">Part 2 Poisson Blending</h2>
-    <p style="font-size: 20px;">
-        I first cropped my face and my friend Nancy's face to have the same dimenstion and use the key points giving by corresponding tool, I computed an average face shape using the midpoints of corresponding keypoints from both faces. 
-        Then, I use Delaunay triangulation, and calculated affine transformations for each triangle in the images and warped them to the average shape. 
-        Finally, I did a cross-dissolve to blend two faces to get a midway face. 
-        Here is the result:
+    <p>
+        Poisson blending is a seamless image editing technique that merges an object image into a 
+        background image using gradient domain manipulation. The goal is to solve for pixel values 
+        within the mask region such that the gradients inside the mask match those of the object image 
+        while maintaining consistency with the background image at the boundaries.
     </p>
+    <h2>Mathematical Expression</h2>
+    <p>
+        The problem can be formulated as a minimization problem:
+    </p>
+    <div class="math">
+        Minimize: 
+        <br>
+        <code>
+            \[ \sum_{(x, y) \in \text{mask}} \| \nabla v(x, y) - \nabla \text{object}(x, y) \|^2 \]
+        </code>
+        <br>
+        Subject to: 
+        <br>
+        <code>
+            v(x, y) = \text{background}(x, y) \quad \forall (x, y) \in \text{boundary}.
+        </code>
+    </div>
+    <p>
+        Here:
+        <ul>
+            <li><code>\( v(x, y) \)</code> represents the pixel intensities to be blended.</li>
+            <li><code>\( \nabla \)</code> denotes the gradient operator.</li>
+            <li>The boundary condition ensures smooth transitions between the object and background.</li>
+        </ul>
+    </p>
+    <h2>Steps in the Algorithm</h2>
+    <ol>
+        <li>
+            <strong>Setup:</strong> Initializes variables for the object image, mask, and background image. 
+            Each pixel in the mask is mapped to a variable, and neighboring relationships are represented 
+            in a sparse matrix <code>A</code> and vector <code>b</code>.
+        </li>
+        <li>
+            <strong>Gradient Constraints:</strong> For each pixel in the mask:
+            <ul>
+                <li>If the neighbor is inside the mask, the gradient from the object image is preserved.</li>
+                <li>If the neighbor is outside the mask, the gradient is aligned with the background image.</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Least Squares Solution:</strong> Solves the sparse linear system <code>Av = b</code> 
+            using <code>lsqr</code>, where <code>v</code> contains the reconstructed pixel intensities.
+        </li>
+        <li>
+            <strong>Blend and Return:</strong> Updates the pixels in the blended region and returns 
+            the output image, seamlessly integrating the object into the background.
+        </li>
+    </ol>
+    
     <img src="./proj3_pic/Part2.png" width="800" alt="Part2.png"> <br/>
 
     <h2 style="font-size: 30px;">Part 3</h2>
