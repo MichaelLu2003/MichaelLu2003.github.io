@@ -31,25 +31,17 @@
 <p>
     In this part, I implement Poisson blending, which is a wonderful technique that merges an object image
     into a background image seamlessly through gradient tricks. 
-<p>
-    The problem can be formulated as a minimization problem:
-</p>
-<div class="math">
-    <p>
-        Minimize: 
-        <br>
+<p>The minimization problem can be expressed as:</p>
+    <div style="text-align: center;">
         \[
-            \sum_{(x, y) \in \text{mask}} \| \nabla v(x, y) - \nabla \text{object}(x, y) \|^2
+        \mathbf{v} = \arg\min_{\mathbf{v}} 
+        \sum_{i \in S, j \in N_i \cap S} 
+        ((v_i - v_j) - (s_i - s_j))^2 
+        + 
+        \sum_{i \in S, j \in N_i \cap \neg S} 
+        ((v_i - t_j) - (s_i - s_j))^2
         \]
-        <br>
-        Subject to: 
-        <br>
-        \[
-            v(x, y) = \text{background}(x, y) \quad \forall (x, y) \in \text{boundary}.
-        \]
-    </p>
-</div>
-
+    </div>
 
 <p>
     The process begins by initializing variables for the object image, mask, and background image, 
