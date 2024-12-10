@@ -43,16 +43,14 @@
         \]
     </div>
 
-<p>
-    The process begins by initializing variables for the object image, mask, and background image, 
-    where each pixel in the mask is mapped to a variable, and neighboring relationships are 
-    represented in a sparse matrix <code>A</code> and vector <code>b</code>. For each pixel 
+<p> 
+    I first make sure that each pixel in the mask is mapped to a variable, and neighborhoods are in a 
+    sparse matrix <code>A</code> and vector <code>b</code>. For each pixel 
     in the mask, gradient constraints are enforced: if a neighbor lies within the mask, the gradient 
-    from the object image is preserved, while if it lies outside, the gradient aligns with the 
-    background image. This setup leads to solving the sparse linear system <code>Av = b</code> 
-    using <code>lsqr</code>, where <code>v</code> represents the reconstructed pixel intensities. 
-    Finally, the pixels in the blended region are updated, seamlessly integrating the object into 
-    the background to produce the output image.
+    from the object image is preserved. If a neighbor lies outside the mask, the gradient aligns with the 
+    background image. This gives a sparse linear system <code>Av = b</code> 
+    using <code>lsqr</code>. Then I update or copy all pixles in the blended region, so that I can seamlessly 
+    blend the object into the background to produce the good output image.
 </p>
 
 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
@@ -84,6 +82,37 @@
         <p style="font-size: 18px;">Blended Image</p>
     </div>
 </div>
+
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.3_2.4_moon.jpeg" width="400" alt="Object Image">
+        <p style="font-size: 18px;">Object Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.3_night_sky.jpeg" width="400" alt="Background Image">
+        <p style="font-size: 18px;">Background Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.3.png" width="400" alt="Blended Image">
+        <p style="font-size: 18px;">Blended Image</p>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.3_2.4_moon.jpeg" width="400" alt="Object Image">
+        <p style="font-size: 18px;">Object Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.2_2.4_sky.jpg" width="400" alt="Background Image">
+        <p style="font-size: 18px;">Background Image</p>
+    </div>
+    <div style="text-align: center;">
+        <img src="./final_project/gradient_domain/part2.4.png" width="400" alt="Blended Image">
+        <p style="font-size: 18px;">Blended Image</p>
+    </div>
+</div>
+<p>Note this image does not blend really well because the dark black sky around the moon doesn’t match the bright blue sky of the background, making it hard to smoothly merge the colors </p>
 
 
     
